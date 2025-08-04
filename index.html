@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
+
+<title>넘털 (NUMTTER)</title>
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #2e8b8b;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+    .container {
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .game-title {
+        text-align: center;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .game-subtitle {
+        text-align: center;
+        color: #b8e6e6;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .start-screen {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+.game-description {
+    background: #e0f7f7;
+    color: #2e8b8b;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+    .operator-selection {
+        margin: 30px 0;
+    }
+
+    .operator-selection h3 {
+        color: #2e8b8b;
+        margin-bottom: 20px;
+    }
+
+    .operator-options {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .operator-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #2e8b8b;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+    }
+
+    .operator-option:hover {
+        background-color: #f0f8f8;
+    }
+
+    .operator-option input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .start-btn {
+        background: #2e8b8b;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 20px;
+    }
+
+    .start-btn:hover {
+        background: #267070;
+    }
+
+    .start-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    .game-screen {
+        display: none;
+    }
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.moon-inline {
+    font-size: 40px;
+    padding: 0 10px;
+    color: rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+}
+    .target-display {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .moon-day {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    .target-number {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2e8b8b;
+    }
+
+    .operators-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2e8b8b;
+        margin-bottom: 15px;
+    }
+
+    .operators {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .operator {
+        background: #2e8b8b;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .operator:hover {
+        background: #267070;
+    }
+
+    .cards-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        width: 60px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .card:hover {
+        border-color: #2e8b8b;
+        background: #f0f8f8;
+    }
+
+    .card.selected {
+        border-color: #95a5a6;
+        background: #95a5a6;
+        color: #7f8c8d;
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .card.selected:hover {
+        border-color: #95a5a6;
+        background: #95a5a6;
+    }
+
+    .expression-display {
+        background: #f8f8f8;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 15px 0;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        min-height: 24px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-submit {
+        background: #2e8b8b;
+        color: white;
+    }
+
+    .btn-submit:hover {
+        background: #267070;
+    }
+
+    .btn-submit:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    .btn-skip {
+        background: #ff6b6b;
+        color: white;
+    }
+
+    .btn-skip:hover {
+        background: #e55555;
+    }
+
+    .btn-reset {
+        background: #95a5a6;
+        color: white;
+    }
+
+    .btn-reset:hover {
+        background: #7f8c8d;
+    }
+
+    .status {
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .game-over {
+        background: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .game-over-content {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 400px;
+    }
+
+    .waning-crescent {
+        transform: scaleX(-1);
+    }
+
+    .back-btn {
+        background: #95a5a6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .back-btn:hover {
+        background: #7f8c8d;
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="game-title">넘털 (NUMTTER)</div>
+        <div class="game-subtitle"></div>
+
+
+    <!-- 시작 화면 -->
+    <div class="start-screen" id="startScreen">
+     
+<h2>넘털 = 넘버 (number) + 털다 (teolda)</h2>
+<div class="game-description">
+    여러분은 한 달이 가기 전에 매일 달력에 있는 숫자에 해당되는 수식을 만들어  
+    갖고 있는 숫자 카드를 털어야 합니다.<br><br>
+
+    연산기호는 여러분이 마음대로 선택할 수 있으니,  
+    다양한 방식으로 도전해 보세요!<br><br>
+
+    <em>털다</em> (teolda) means "to get rid of" or "to clear out".  
+    In this game, your goal is to clear out all your number cards before the 30th day.
+</div>        
+
+
+
+<div class="operator-selection">
+            <h3>사용할 연산기호를 선택하세요:</h3>
+            <div class="operator-options">
+                <label class="operator-option">
+                    <input type="checkbox" value="+" checked> +
+                </label>
+                <label class="operator-option">
+                    <input type="checkbox" value="-"> -
+                </label>
+                <label class="operator-option">
+                    <input type="checkbox" value="×"> ×
+                </label>
+                <label class="operator-option">
+                    <input type="checkbox" value="÷"> ÷
+                </label>
+                <label class="operator-option">
+                    <input type="checkbox" value="()"> 괄호
+                </label>
+            </div>
+        </div>
+        <button class="start-btn" id="startBtn">게임 시작</button>
+    </div>
+
+    <!-- 게임 화면 -->
+    <div class="game-screen" id="gameScreen">
+        
+
+<div class="top-bar">
+  <button class="back-btn" id="backBtn">← 설정으로 돌아가기</button>
+  <div class="moon-inline" id="moonInline"><div class="moon-day" id="moonDisplay">🌙</div>
+            </div>
+</div>
+
+
+
+
+        <div class="target-display">
+            <div class="target-number">목표: <span id="targetNumber">1</span>일차</div>
+        </div>
+
+        <div class="operators-section">
+            <div class="section-title">사용 가능한 연산기호:</div>
+            <div class="operators" id="operators"></div>
+        </div>
+
+        <div class="cards-section">
+            <div class="section-title">내 카드들 (<span id="cardCount">1</span>장):</div>
+            <div class="cards" id="cards"></div>
+            <div class="expression-display" id="expression">카드와 연산기호를 클릭해서 수식을 만드세요</div>
+            <div class="buttons">
+                <button class="btn btn-submit" id="submitBtn" disabled>✓ 제출</button>
+                <button class="btn btn-skip" id="skipBtn">➤ 건너뛰기</button>
+                <button class="btn btn-reset" id="clearBtn">🗑️ 수식 지우기</button>
+            </div>
+        </div>
+
+        <div class="status" id="status"></div>
+    </div>
+</div>
+
+<div class="game-over" id="gameOver">
+    <div class="game-over-content">
+        <h2 id="gameOverTitle"></h2>
+        <p id="gameOverMessage"></p>
+        <button class="btn btn-submit" onclick="location.reload()">다시 시작</button>
+    </div>
+</div>
+
+<script>
+    class NumtterGame {
+        constructor() {
+            this.currentDay = 1;
+            this.maxDay = 30;
+            this.cards = [];
+            this.operators = [];
+            this.expressionTokens = [];
+            this.maxCards = 20;
+            
+            this.bindStartEvents();
+        }
+
+        bindStartEvents() {
+            document.getElementById('startBtn').onclick = () => this.startGame();
+            document.getElementById('backBtn').onclick = () => this.backToStart();
+            
+            // 체크박스 변경 시 시작 버튼 상태 업데이트
+            const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => this.updateStartButton());
+            });
+        }
+
+        updateStartButton() {
+            const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
+            const hasChecked = Array.from(checkboxes).some(cb => cb.checked);
+            document.getElementById('startBtn').disabled = !hasChecked;
+        }
+
+        startGame() {
+            // 선택된 연산기호 가져오기
+            const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
+            this.operators = [];
+            this.hasParentheses = false;
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    if (checkbox.value === '()') {
+                        this.hasParentheses = true;
+                    } else {
+                        this.operators.push(checkbox.value);
+                    }
+                }
+            });
+
+            if (this.operators.length === 0 && !this.hasParentheses) {
+                alert('최소 하나의 연산기호를 선택해주세요!');
+                return;
+            }
+
+            // 게임 초기화 - 4장으로 시작
+            this.currentDay = 1;
+            this.cards = [this.randomCard(), this.randomCard(), this.randomCard(), this.randomCard()];
+            this.expressionTokens = [];
+
+            // 화면 전환
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'block';
+
+            this.init();
+        }
+
+        backToStart() {
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
+        }
+
+        init() {
+            this.updateDisplay();
+            this.bindGameEvents();
+        }
+
+        bindGameEvents() {
+            document.getElementById('submitBtn').onclick = () => this.submit();
+            document.getElementById('skipBtn').onclick = () => this.skip();
+            document.getElementById('clearBtn').onclick = () => this.clearExpression();
+        }
+
+        randomCard() {
+            return Math.floor(Math.random() * 10) + 1;
+        }
+
+        getMoonEmoji(day) {
+            if (day <= 5) return '🌙';
+            if (day <= 11) return '🌛';
+            if (day <= 18) return '🌕';
+            if (day <= 24) return '🌜';
+            return '🌙';
+        }
+
+        getMoonClass(day) {
+            return day >= 25 ? 'waning-crescent' : '';
+        }
+
+        updateDisplay() {
+            const moonDisplay = document.getElementById('moonDisplay');
+            const moonEmoji = this.getMoonEmoji(this.currentDay);
+            const moonClass = this.getMoonClass(this.currentDay);
+            
+            moonDisplay.textContent = moonEmoji;
+            moonDisplay.className = moonClass;
+            
+            document.getElementById('targetNumber').textContent = this.currentDay;
+            document.getElementById('cardCount').textContent = this.cards.length;
+            
+            this.updateOperators();
+            this.updateCards();
+            this.updateExpression();
+
+            if (this.cards.length >= this.maxCards) {
+                this.gameOver(false, '카드가 너무 많아져서 패배했습니다!');
+            }
+        }
+
+        updateOperators() {
+            const operatorsDiv = document.getElementById('operators');
+            operatorsDiv.innerHTML = '';
+            
+            this.operators.forEach((op, index) => {
+                const opDiv = document.createElement('div');
+                opDiv.className = 'operator';
+                opDiv.textContent = op;
+                opDiv.onclick = () => this.selectOperator(index);
+                operatorsDiv.appendChild(opDiv);
+            });
+
+            // 괄호가 선택되었으면 ( 와 ) 버튼 추가
+            if (this.hasParentheses) {
+                const openParenDiv = document.createElement('div');
+                openParenDiv.className = 'operator';
+                openParenDiv.textContent = '(';
+                openParenDiv.onclick = () => this.selectParenthesis('(');
+                operatorsDiv.appendChild(openParenDiv);
+
+                const closeParenDiv = document.createElement('div');
+                closeParenDiv.className = 'operator';
+                closeParenDiv.textContent = ')';
+                closeParenDiv.onclick = () => this.selectParenthesis(')');
+                operatorsDiv.appendChild(closeParenDiv);
+            }
+        }
+
+        updateCards() {
+            const cardsDiv = document.getElementById('cards');
+            cardsDiv.innerHTML = '';
+            
+            this.cards.forEach((card, index) => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'card';
+                cardDiv.textContent = card;
+                cardDiv.onclick = () => this.selectCard(index);
+                cardsDiv.appendChild(cardDiv);
+            });
+        }
+
+        selectCard(index) {
+            const isCardUsed = this.expressionTokens.some(token => 
+                token.type === 'number' && token.cardIndex === index
+            );
+            
+            if (isCardUsed) {
+                return;
+            }
+            
+            const cardValue = this.cards[index];
+            this.expressionTokens.push({ type: 'number', value: cardValue, cardIndex: index });
+            
+            const cardDivs = document.querySelectorAll('.card');
+            cardDivs[index].classList.add('selected');
+            
+            this.updateExpression();
+        }
+
+        selectOperator(index) {
+            const operator = this.operators[index];
+            this.expressionTokens.push({ type: 'operator', value: operator });
+            this.updateExpression();
+        }
+
+        selectParenthesis(paren) {
+            this.expressionTokens.push({ type: 'parenthesis', value: paren });
+            this.updateExpression();
+        }
+
+        updateExpression() {
+            const expressionDiv = document.getElementById('expression');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (this.expressionTokens.length === 0) {
+                expressionDiv.textContent = '카드와 연산기호를 클릭해서 수식을 만드세요';
+                submitBtn.disabled = true;
+                return;
+            }
+
+            let expression = '';
+            let hasValidExpression = false;
+            
+            try {
+                // 토큰들로 수식 문자열 생성
+                this.expressionTokens.forEach((token, i) => {
+                    if (i > 0) expression += ' ';
+                    expression += token.value;
+                });
+                
+                // 수식 유효성 검사 및 계산
+                if (this.isValidExpression()) {
+                    const result = this.calculateExpression();
+                    
+                    if (result !== null && Number.isInteger(result)) {
+                        expression += ` = ${result}`;
+                        submitBtn.disabled = (result !== this.currentDay);
+                        hasValidExpression = true;
+                    } else {
+                        expression += ' = (정수가 아님)';
+                        submitBtn.disabled = true;
+                    }
+                }
+                
+                expressionDiv.textContent = expression || '올바른 수식을 만드세요';
+                
+                if (!hasValidExpression) {
+                    submitBtn.disabled = true;
+                }
+                
+            } catch (error) {
+                expressionDiv.textContent = '잘못된 수식입니다';
+                submitBtn.disabled = true;
+            }
+        }
+
+        isValidExpression() {
+            if (this.expressionTokens.length === 0) return false;
+            
+            // 괄호 매칭 검사
+            let openCount = 0;
+            for (let token of this.expressionTokens) {
+                if (token.type === 'parenthesis') {
+                    if (token.value === '(') openCount++;
+                    else if (token.value === ')') openCount--;
+                    if (openCount < 0) return false; // 닫는 괄호가 먼저 나옴
+                }
+            }
+            if (openCount !== 0) return false; // 괄호가 매칭되지 않음
+            
+            // 숫자로 시작하고 숫자로 끝나는지 확인
+            const firstToken = this.expressionTokens[0];
+            const lastToken = this.expressionTokens[this.expressionTokens.length - 1];
+            
+            return (firstToken.type === 'number' || firstToken.value === '(') && 
+                   (lastToken.type === 'number' || lastToken.value === ')');
+        }
+
+        calculateExpression() {
+            try {
+                // 토큰들을 문자열로 변환
+                let expressionStr = '';
+                this.expressionTokens.forEach(token => {
+                    expressionStr += token.value;
+                });
+                
+                // × 를 * 로, ÷ 를 / 로 변환
+                expressionStr = expressionStr.replace(/×/g, '*').replace(/÷/g, '/');
+                
+                // 안전한 계산을 위해 eval 대신 간단한 파서 사용
+                const result = this.safeEval(expressionStr);
+                
+                // 나누기 결과가 정수가 아니면 null 반환
+                if (result !== null && !Number.isInteger(result)) {
+                    return null;
+                }
+                
+                return result;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        safeEval(expression) {
+            try {
+                // 허용된 문자만 포함하는지 확인
+                if (!/^[0-9+\-*/().\s]+$/.test(expression)) {
+                    return null;
+                }
+                
+                // Function constructor를 사용한 안전한 eval
+                const result = new Function('return (' + expression + ')')();
+                
+                return isFinite(result) ? result : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        submit() {
+            if (this.expressionTokens.length === 0) return;
+            
+            const usedCardIndices = this.expressionTokens
+                .filter(token => token.type === 'number')
+                .map(token => token.cardIndex)
+                .sort((a, b) => b - a);
+            
+            usedCardIndices.forEach(index => {
+                this.cards.splice(index, 1);
+            });
+            
+            this.nextDay();
+        }
+
+        skip() {
+            this.cards.push(this.randomCard());
+            this.nextDay();
+        }
+
+        nextDay() {
+            this.currentDay++;
+            
+            if (this.currentDay > this.maxDay) {
+                this.gameOver(false, '30일이 지나서 실패했습니다!');
+                return;
+            }
+            
+            // 카드가 1장 이하면 성공! (원카드 방식)
+            if (this.cards.length <= 1) {
+                this.gameOver(true, '카드를 거의 다 사용했습니다!');
+                return;
+            }
+            
+            this.expressionTokens = [];
+            this.resetCardStates();
+            this.updateDisplay();
+        }
+
+        resetCardStates() {
+            const cardDivs = document.querySelectorAll('.card');
+            cardDivs.forEach(card => card.classList.remove('selected'));
+        }
+
+        clearExpression() {
+            this.expressionTokens = [];
+            const cardDivs = document.querySelectorAll('.card');
+            cardDivs.forEach(card => card.classList.remove('selected'));
+            this.updateExpression();
+        }
+
+        gameOver(success, message) {
+            const gameOverDiv = document.getElementById('gameOver');
+            const titleDiv = document.getElementById('gameOverTitle');
+            const messageDiv = document.getElementById('gameOverMessage');
+            
+            titleDiv.textContent = success ? '🎉 성공!' : '😢 실패';
+            messageDiv.textContent = message + `\n\n진행일수: ${this.currentDay-1}일\n남은 카드: ${this.cards.length}장`;
+            
+            gameOverDiv.style.display = 'flex';
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        new NumtterGame();
+    });
+</script>
+
+
+</body>
+</html>
