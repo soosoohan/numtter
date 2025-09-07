@@ -359,11 +359,50 @@
     .back-btn:hover {
         background: #7f8c8d;
     }
+.square-button {
+            width: 250px;
+            height: 45px;
+            background: #e0f7f7;
+            color:  #2e8b8b;
+            border: none;
+            border-radius: 12px; /* 둥근 모서리 */
+            cursor: pointer;
+            font-size: 1.1rem; /*크기 고정 */
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.2;
+            margin: 8px;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+        }
+
+    .square-button:hover {
+        background-color: #FF8FAB; /* 호버 시 진한 분홍 */
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .square-button:active {
+        transform: scale(0.95);
+    }
+.credits {
+        margin-top: 5px;
+        font-size: 1em;
+        color: White;
+        background: #2e8b8b;
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        justify-content: center;
+}
 </style>
 
 
 </head>
-<body data-game-id="numteo" data-game-type="index">
+<body data-game-id="numtter" data-game-type="index">
     <div class="container">
         <div class="game-title">넘털 (NUMTTER)</div>
         <div class="game-subtitle"></div>
@@ -372,20 +411,18 @@
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
      
-<h2>넘털 = 넘버 (number) + 털다 (teolda)</h2>
 <div class="game-description">
     여러분은 한 달이 가기 전에 매일 달력에 있는 숫자를 목표숫자로 수식을 만들어  
-    갖고 있는 숫자 카드를 털어야 합니다.<br><br>
+    갖고 있는 숫자 카드를 털어야 합니다.<br>
 
-    연산기호는 여러분이 마음대로 선택할 수 있으니,  
-    다양한 방식으로 도전해 보세요!<br><br>
+    연산기호는 마음대로 선택하세요.<br><br>
 
     <em>털다</em> (teolda) means "to get rid of" or "to clear out".  
    
-
+<br>
 Before the month ends,<br> each day you must create an equation that matches the number on the calendar for that day,<br>
 and use it to clear the number cards you have.
-<br><br>
+<br>
 You can freely choose any mathematical operators,<br>
 so try challenging yourself in different ways!
 
@@ -394,10 +431,11 @@ so try challenging yourself in different ways!
 
 
 <div class="operator-selection">
-            <h3>사용할 연산기호를 선택하세요:</h3>
+            <h3>사용할 연산기호를 선택하세요:<br>
+           Select operators to use:</h3>
             <div class="operator-options">
                 <label class="operator-option">
-                    <input type="checkbox" value="+" checked> +
+                <input type="checkbox" value="+" checked> + 
                 </label>
                 <label class="operator-option">
                     <input type="checkbox" value="-"> -
@@ -409,11 +447,11 @@ so try challenging yourself in different ways!
                     <input type="checkbox" value="÷"> ÷
                 </label>
                 <label class="operator-option">
-                    <input type="checkbox" value="()"> 괄호
+                    <input type="checkbox" value="()"> ()
                 </label>
             </div>
         </div>
-        <button class="start-btn" id="startBtn">게임 시작</button>
+        <button class="start-btn" id="startBtn">게임 시작<br>Start Game</button>
     </div>
 
     <!-- 게임 화면 -->
@@ -421,31 +459,32 @@ so try challenging yourself in different ways!
         
 
 <div class="top-bar">
-  <button class="back-btn" id="backBtn">← 설정으로 돌아가기</button>
+  <button class="back-btn" id="backBtn"> 설정으로 돌아가기 <br>Back to Settings</button>
   <div class="moon-inline" id="moonInline"><div class="moon-day" id="moonDisplay">🌙</div>
             </div>
 </div>
 
+<div class="target-display">
+    <div class="target-number">목표: <span id="targetNumber">1</span>일차<br>
+        <span style="font-size: 0.8em; color: #666;">Target: Day <span id="targetNumberEng">1</span></span>
 
-
-
-        <div class="target-display">
-            <div class="target-number">목표: <span id="targetNumber">1</span>일차</div>
+</div>
         </div>
 
-        <div class="operators-section">
-            <div class="section-title">사용 가능한 연산기호:</div>
-            <div class="operators" id="operators"></div>
-        </div>
 
-        <div class="cards-section">
-            <div class="section-title">내 카드들 (<span id="cardCount">1</span>장):</div>
-            <div class="cards" id="cards"></div>
-            <div class="expression-display" id="expression">카드와 연산기호를 클릭해서 수식을 만드세요</div>
-            <div class="buttons">
-                <button class="btn btn-submit" id="submitBtn" disabled>✓ 제출</button>
-                <button class="btn btn-skip" id="skipBtn">➤ 건너뛰기</button>
-                <button class="btn btn-reset" id="clearBtn">🗑️ 수식 지우기</button>
+<div class="operators-section">
+    <div class="section-title">사용 가능한 연산기호<br><span style="font-size: 1em; color: #666;">Available Operators</span>:</div>
+    <div class="operators" id="operators"></div>
+</div>
+
+<div class="cards-section">
+    <div class="section-title">내 카드들 (<span id="cardCount">1</span>장)<br><span style="font-size: 0.8em; color: #666;">My Cards (<span id="cardCountEng">1</span> cards)</span>:</div>
+    <div class="cards" id="cards"></div>
+    <div class="expression-display" id="expression">카드와 연산기호를 클릭해서 수식을 만드세요<br><span style="font-size: 1em; color: #666;">Click cards and operators to create an expression</span></div>
+    <div class="buttons">
+        <button class="btn btn-submit" id="submitBtn" disabled>✓ 제출<br><span style="font-size: 0.8em;">Submit</span></button>
+        <button class="btn btn-skip" id="skipBtn">➤ 건너뛰기<br><span style="font-size: 1em;">Skip</span></button>
+        <button class="btn btn-reset" id="clearBtn">🗑️ 수식 지우기<br><span style="font-size: 0.8em;">Clear</span></button>
             </div>
         </div>
 
@@ -457,10 +496,15 @@ so try challenging yourself in different ways!
     <div class="game-over-content">
         <h2 id="gameOverTitle"></h2>
         <p id="gameOverMessage"></p>
-        <button class="btn btn-submit" onclick="location.reload()">다시 시작</button>
+        <button class="btn btn-submit" onclick="location.reload()">다시 시작<br><span style="font-size: 1em;">Restart</span></button>
     </div>
 </div>
-
+<div class="credits">       
+<button class="square-button" onclick="location.href='https://soosoohan.github.io/soosooland/'">
+    재미있게 공부하는 수수랜드
+</button>
+<p> © 2025 Soosoo Han. All rights reserved.</p>
+    </div>
 <script>
     class NumtterGame {
         constructor() {
@@ -508,8 +552,9 @@ so try challenging yourself in different ways!
             });
 
             if (this.operators.length === 0 && !this.hasParentheses) {
-                alert('최소 하나의 연산기호를 선택해주세요!');
-                return;
+                
+alert('최소 하나의 연산기호를 선택해주세요! (Please select at least one operator!)');
+return;
             }
 
             // 게임 초기화 - 4장으로 시작
@@ -572,7 +617,7 @@ so try challenging yourself in different ways!
             this.updateExpression();
 
             if (this.cards.length >= this.maxCards) {
-                this.gameOver(false, '카드가 너무 많아져서 패배했습니다!');
+                this.gameOver(false, '카드가 너무 많아져서 패배했습니다!\nGame Over! You have too many cards!');
             }
         }
 
@@ -651,7 +696,7 @@ so try challenging yourself in different ways!
             const submitBtn = document.getElementById('submitBtn');
             
             if (this.expressionTokens.length === 0) {
-                expressionDiv.textContent = '카드와 연산기호를 클릭해서 수식을 만드세요';
+expressionDiv.textContent = '카드와 연산기호를 클릭해서 수식을 만드세요 (Click cards and operators to create an expression)';
                 submitBtn.disabled = true;
                 return;
             }
@@ -675,19 +720,21 @@ so try challenging yourself in different ways!
                         submitBtn.disabled = (result !== this.currentDay);
                         hasValidExpression = true;
                     } else {
-                        expression += ' = (정수가 아님)';
-                        submitBtn.disabled = true;
+                        
+expression += ' = (정수가 아님 / Not an integer)';
+submitBtn.disabled = true;
+
                     }
                 }
+expressionDiv.textContent = expression || '올바른 수식을 만드세요 (Create a valid expression)';
                 
-                expressionDiv.textContent = expression || '올바른 수식을 만드세요';
                 
                 if (!hasValidExpression) {
                     submitBtn.disabled = true;
                 }
                 
             } catch (error) {
-                expressionDiv.textContent = '잘못된 수식입니다';
+expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
                 submitBtn.disabled = true;
             }
         }
@@ -779,13 +826,13 @@ so try challenging yourself in different ways!
             this.currentDay++;
             
             if (this.currentDay > this.maxDay) {
-                this.gameOver(false, '30일이 지나서 실패했습니다!');
+                this.gameOver(false, '30일이 지나서 실패했습니다!\nYou failed after 30 days!');
                 return;
             }
             
             // 카드가 1장 이하면 성공! (원카드 방식)
             if (this.cards.length <= 1) {
-                this.gameOver(true, '카드를 거의 다 사용했습니다!');
+                this.gameOver(true, '🎉 성공!\nSuccess!');
                 return;
             }
             
@@ -811,8 +858,7 @@ so try challenging yourself in different ways!
             const titleDiv = document.getElementById('gameOverTitle');
             const messageDiv = document.getElementById('gameOverMessage');
             
-            titleDiv.textContent = success ? '🎉 성공!' : '😢 실패';
-            messageDiv.textContent = message + `\n\n진행일수: ${this.currentDay-1}일\n남은 카드: ${this.cards.length}장`;
+            titleDiv.textContent = success ? '🎉 성공!\nSuccess!' : '😢 실패\n Game over!';
             
             gameOverDiv.style.display = 'flex';
         }
