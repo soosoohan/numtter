@@ -4,11 +4,18 @@
 <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4YZHC1G9FN');
-    </script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4YZHC1G9FN');
+  
+  window.addEventListener('load', function() {
+    gtag('event', 'page_view', {
+      'game_id': 'numteo', 
+      'game_type': 'index'
+    });
+  });
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
 
@@ -363,7 +370,7 @@
 
 
 </head>
-<body>
+<body data-game-id="numteo" data-game-type="index">
     <div class="container">
         <div class="game-title">넘털 (NUMTTER)</div>
         <div class="game-subtitle"></div>
