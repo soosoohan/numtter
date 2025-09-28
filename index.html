@@ -27,7 +27,7 @@
 
 
     .container {
-        max-width: 500px;
+        max-width: 700px;
         width: 100%;
     }
 
@@ -53,15 +53,15 @@
         text-align: center;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-.game-description {
-    background: #e0f7f7;
-    color: #2e8b8b;
-    font-size: 16px;
-    line-height: 1.6;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    .game-description {
+        background: #e0f7f7;
+        color: #2e8b8b;
+        font-size: 16px;
+        line-height: 1.6;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
     .operator-selection {
         margin: 30px 0;
@@ -251,15 +251,14 @@
     }
 
     .expression-display {
-        background: #f8f8f8;
-        border-radius: 8px;
-        padding: 15px;
-        margin: 15px 0;
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-        min-height: 24px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+    min-height: 40px;
     }
 
     .buttons {
@@ -412,24 +411,29 @@
     <div class="start-screen" id="startScreen">
      
 <div class="game-description">
-    여러분은 한 달이 가기 전에 매일 달력에 있는 숫자를 목표숫자로 수식을 만들어  
-    갖고 있는 숫자 카드를 털어야 합니다.<br>
+<h3>원카드의 재미에 연산학습 효과까지!</h3>
+원카드에서 영감을 받아 만든 게임입니다.<br>  
+사용할 연산기호를 선택하고 게임을 시작합니다.<br>
+선택한 연산기호를 사용해서 주어진 카드로 수식을 만듭니다.<br>
+목표숫자는 1부터 시작하여 1씩 늘어나서 30에서 끝납니다.<br>
+수식결과로 목표숫자를 만들지 못하면 카드가 추가됩니다.<br>
+두 개의 숫자카드로 두 자리 숫자를 만드는 것도 가능합니다.<br>
+수식 결과는 자연수만 인정됩니다.<br>
+카드를 1개만 남기거나 모두 털어내면 성공입니다.<br>
+연산기호의 선택에 따라 다양하게 즐겨보세요.<br><br>
+<h3>The fun of Uno with math learning benefits!</h3>
+This is a number equation game inspired by Uno.<br>
+Choose your mathematical operators to start the game.<br>
+Create equations using your selected operators with the given cards.<br>
+Target numbers start from 1 and increase by 1 until reaching 30.<br>
+If you fail to make the target number, additional cards are added.<br>
+You can combine two number cards to form two-digit numbers.<br>
+Only your chosen operators can be used unlimited times.<br>
+Equation results must be natural numbers only.<br>
+Complete the game by clearing all cards or leaving just one card remaining.<br>
+Try challenging yourself in different ways!<br>
 
-    연산기호는 마음대로 선택하세요.<br><br>
-
-    <em>털다</em> (teolda) means "to get rid of" or "to clear out".  
-   
-<br>
-Before the month ends,<br> each day you must create an equation that matches the number on the calendar for that day,<br>
-and use it to clear the number cards you have.
-<br>
-You can freely choose any mathematical operators,<br>
-so try challenging yourself in different ways!
-
-</div>        
-
-
-
+</div>
 <div class="operator-selection">
             <h3>사용할 연산기호를 선택하세요:<br>
            Select operators to use:</h3>
@@ -478,17 +482,17 @@ so try challenging yourself in different ways!
 </div>
 
 <div class="cards-section">
-    <div class="section-title">내 카드들 (<span id="cardCount">1</span>장)<br><span style="font-size: 0.8em; color: #666;">My Cards (<span id="cardCountEng">1</span> cards)</span>:</div>
+    <div class="section-title">내 카드들 (<span id="cardCount">1</span>장)<br><span style="font-size: 0.8em; color: #666;">Your Cards (<span id="cardCountEng">1</span> cards)</span>:</div>
     <div class="cards" id="cards"></div>
-    <div class="expression-display" id="expression">카드와 연산기호를 클릭해서 수식을 만드세요<br><span style="font-size: 1em; color: #666;">Click cards and operators to create an expression</span></div>
+    
+<div class="expression-display" id="expression"></div>
+
     <div class="buttons">
         <button class="btn btn-submit" id="submitBtn" disabled>✓ 제출<br><span style="font-size: 0.8em;">Submit</span></button>
         <button class="btn btn-skip" id="skipBtn">➤ 건너뛰기<br><span style="font-size: 1em;">Skip</span></button>
         <button class="btn btn-reset" id="clearBtn">🗑️ 수식 지우기<br><span style="font-size: 0.8em;">Clear</span></button>
             </div>
-        </div>
-
-        <div class="status" id="status"></div>
+        </div>    <div class="status" id="status"></div>
     </div>
 </div>
 
@@ -696,7 +700,7 @@ return;
             const submitBtn = document.getElementById('submitBtn');
             
             if (this.expressionTokens.length === 0) {
-expressionDiv.textContent = '카드와 연산기호를 클릭해서 수식을 만드세요 (Click cards and operators to create an expression)';
+expressionDiv.textContent = '';
                 submitBtn.disabled = true;
                 return;
             }
