@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://numtter.vercel.app/sitemap.xml
