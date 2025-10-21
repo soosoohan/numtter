@@ -1,10 +1,14 @@
-# Numtter
+## Play Numtter :https://soosooland.com/numtter/   
 
-## 🌟 Soosooland - Game Demo Hub by Han Soosoo
+---
 
- "Learning through fun, and fun through learning."
+## 🌟 Soosooland - Puzzle Game Hub by Han Soosoo
 
-Explore more brain games and puzzles in **[Soosooland](https://soosoohan.github.io/soosooland/)**    
+---
+
+"Learning through fun, and fun through learning."
+
+Explore more brain games and puzzles in **[Soosooland](https://soosooland.com/)**    
 — a digital playground designed to improve memory, logic, and creativity while having fun!
 
 ---
