@@ -385,55 +385,33 @@
     .back-btn:hover {
         background: #7f8c8d;
     }
-.square-button {
-            width: 250px;
-            height: 45px;
-            background: #e0f7f7;
-            color:  #2e8b8b;
-            border: none;
-            border-radius: 12px; /* 둥근 모서리 */
-            cursor: pointer;
-            font-size: 1.1rem; /*크기 고정 */
-            font-weight: bold;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            line-height: 1.2;
-            margin: 8px;
-            transition: all 0.3s ease;
-            font-family: Arial, sans-serif;
-        }
 
-    .square-button:hover {
-        background-color: #FF8FAB; /* 호버 시 진한 분홍 */
-        transform: scale(1.05);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .square-button:active {
-        transform: scale(0.95);
-    }
-.credits {
-        margin-top: 5px;
+  .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
         font-size: 1em;
-        color: White;
-        background: #2e8b8b;
-        padding: 20px;
-        border-radius: 10px;
-        width: 350px;
-        justify-content: center;
-}
+        background-color: #FFD6BA;
+        color: #7A2E2E;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 100;
+    }
+
+    .back-button:hover {
+        background-color: #FF9494;
+        color: white;
+    }
 </style>
-
-
 </head>
 <body data-game-id="numtter" data-game-type="index">
+  <button class="back-button" onclick="location.href='https://soosooland.com/'"> Soosooland </button>
     <div class="container">
         <div class="game-title">넘털 (NUMTTER)</div>
         <div class="game-subtitle"></div>
-
-
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
      
