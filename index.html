@@ -481,7 +481,7 @@ Try challenging yourself in different ways!<br>
 
 <div class="target-display">
     <div class="target-number">목표: <span id="targetNumber">1</span>일차<br>
-        <span style="font-size: 0.8em; color: #666;">Target: Day <span id="targetNumber">1</span></span>
+        <span style="font-size: 0.8em; color: #666;">Target: Day <span id="targetNumberEng">1</span></span>
 
 </div>
         </div>
@@ -625,7 +625,7 @@ return;
             moonDisplay.className = moonClass;
             
             document.getElementById('targetNumber').textContent = this.currentDay;
-            document.getElementById('cardCount').textContent = this.cards.length;
+            document.getElementById('targetNumberEng').textContent = this.currentDay; document.getElementById('cardCount').textContent = this.cards.length;
             
             this.updateOperators();
             this.updateCards();
