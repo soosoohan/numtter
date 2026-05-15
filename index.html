@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,6 +134,77 @@
         width: 20px;
         height: 20px;
         cursor: pointer;
+    }
+
+    /* ── 난이도 설정 섹션 ── */
+    .difficulty-section {
+        background: #e0f7f7;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        color: #2e8b8b;
+    }
+
+    .difficulty-section h3 {
+        color: #2e8b8b;
+        margin-bottom: 16px;
+    }
+
+    .difficulty-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+    }
+
+    .difficulty-row label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2e8b8b;
+    }
+
+    .difficulty-row input[type="number"] {
+        width: 70px;
+        padding: 6px 10px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid #2e8b8b;
+        border-radius: 8px;
+        text-align: center;
+        color: #2e8b8b;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #2e8b8b;
+        cursor: pointer;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+    }
+
+    .radio-option:hover {
+        background-color: #c0eeee;
+    }
+
+    .radio-option input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: #2e8b8b;
     }
 
     .start-btn {
@@ -423,27 +495,15 @@
      
 <div class="game-description">
 <h3>원카드의 재미에 연산학습 효과까지!</h3>
-원카드에서 영감을 받아 만든 게임입니다.<br>  
-사용할 연산기호를 선택하고 게임을 시작합니다.<br>
-선택한 연산기호를 사용해서 주어진 카드로 수식을 만듭니다.<br>
-목표숫자는 1부터 시작하여 1씩 늘어나서 30에서 끝납니다.<br>
-수식결과로 목표숫자를 만들지 못하면 카드가 추가됩니다.<br>
-두 개의 숫자카드로 두 자리 숫자를 만드는 것도 가능합니다.<br>
-수식 결과는 자연수만 인정됩니다.<br>
-카드를 1개만 남기거나 모두 털어내면 성공입니다.<br>
-연산기호의 선택에 따라 다양하게 즐겨보세요.<br><br>
+연산기호를 선택하고, 카드로 매턴 목표숫자를 만드세요.<br>
+목표숫자는 매턴마다 1씩 늘어나며 30턴에서 끝납니다.<br>
+실패하면 카드가 추가됩니다. 두 자리 숫자 조합도 가능.<br>
+카드를 1장 이하로 줄이면 성공!<br><br>
 <h3>The fun of Uno with math learning benefits!</h3>
-This is a number equation game inspired by Uno.<br>
-Choose your mathematical operators to start the game.<br>
-Create equations using your selected operators with the given cards.<br>
-Target numbers start from 1 and increase by 1 until reaching 30.<br>
-If you fail to make the target number, additional cards are added.<br>
-You can combine two number cards to form two-digit numbers.<br>
-Only your chosen operators can be used unlimited times.<br>
-Equation results must be natural numbers only.<br>
-Complete the game by clearing all cards or leaving just one card remaining.<br>
-Try challenging yourself in different ways!<br>
-
+Choose operators and create equations to match the target number each turn.<br>
+The target number increases by 1 each turn and the game ends after 30 turns.<br>
+Fail to match? Cards are added. Two-digit combinations allowed.<br>
+Clear down to 1 card or fewer to win!<br>
 </div>
 <div class="operator-selection">
             <h3>사용할 연산기호를 선택하세요:<br>
@@ -466,6 +526,39 @@ Try challenging yourself in different ways!<br>
                 </label>
             </div>
         </div>
+
+        <!-- ── 난이도 설정 ── -->
+        <div class="difficulty-section">
+            <h3>난이도 설정 / Difficulty Settings</h3>
+
+            <div class="difficulty-row">
+                <label for="startNumber">시작 숫자 (Start number, 1–99):</label>
+                
+
+<input type="number" id="startNumber" min="1" max="99" value="1"
+       oninput="this.value = Math.min(99, Math.max(1, parseInt(this.value)||1))">
+
+            </div>
+
+            <div class="difficulty-row">
+                <label>실패 시 카드 추가 / Cards added on skip:</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="penaltyCards" value="1" checked> 1장 (1 card)
+                    </label>
+
+
+
+<label class="radio-option">
+    <input type="radio" name="penaltyCards" value="2"> 2장 (2 cards)
+</label>
+<label class="radio-option">
+    <input type="radio" name="penaltyCards" value="3"> 3장 (3 cards)
+</label>
+                </div>
+            </div>
+        </div>
+
         <button class="start-btn" id="startBtn">게임 시작<br>Start Game</button>
     </div>
 
@@ -521,7 +614,9 @@ Try challenging yourself in different ways!<br>
     class NumtterGame {
         constructor() {
             this.currentDay = 1;
-            this.maxDay = 30;
+            this.startDay = 1;       // ← 추가: 시작 숫자
+            this.maxDay = 30;        // 턴 수 (항상 30턴)
+            this.penaltyCards = 1;   // ← 추가: 패널티 카드 수
             this.cards = [];
             this.operators = [];
             this.expressionTokens = [];
@@ -534,7 +629,6 @@ Try challenging yourself in different ways!<br>
             document.getElementById('startBtn').onclick = () => this.startGame();
             document.getElementById('backBtn').onclick = () => this.backToStart();
             
-            // 체크박스 변경 시 시작 버튼 상태 업데이트
             const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => this.updateStartButton());
@@ -548,7 +642,7 @@ Try challenging yourself in different ways!<br>
         }
 
         startGame() {
-            // 선택된 연산기호 가져오기
+            // 연산기호 가져오기
             const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
             this.operators = [];
             this.hasParentheses = false;
@@ -564,17 +658,28 @@ Try challenging yourself in different ways!<br>
             });
 
             if (this.operators.length === 0 && !this.hasParentheses) {
-                
-alert('최소 하나의 연산기호를 선택해주세요! (Please select at least one operator!)');
-return;
+                alert('최소 하나의 연산기호를 선택해주세요! (Please select at least one operator!)');
+                return;
             }
 
-            // 게임 초기화 - 4장으로 시작
-            this.currentDay = 1;
+            // ── 시작 숫자 읽기 ──
+            const startInput = parseInt(document.getElementById('startNumber').value, 10);
+            if (isNaN(startInput) || startInput < 1 || startInput > 99) {
+                alert('시작 숫자는 1~99 사이로 입력해주세요! (Enter a start number between 1 and 99!)');
+                return;
+            }
+            this.startDay = startInput;
+            this.currentDay = startInput;
+
+            // ── 패널티 카드 수 읽기 ──
+            const penaltyRadio = document.querySelector('input[name="penaltyCards"]:checked');
+            this.penaltyCards = penaltyRadio ? parseInt(penaltyRadio.value, 10) : 1;
+
+            // 게임 초기화
             this.cards = [this.randomCard(), this.randomCard(), this.randomCard(), this.randomCard()];
             this.expressionTokens = [];
+            this.turnsPlayed = 0;   // 진행한 턴 수 카운터
 
-            // 화면 전환
             document.getElementById('startScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'block';
 
@@ -615,15 +720,17 @@ return;
 
         updateDisplay() {
             const moonDisplay = document.getElementById('moonDisplay');
-            const moonEmoji = this.getMoonEmoji(this.currentDay);
-            const moonClass = this.getMoonClass(this.currentDay);
+            // 달은 진행 턴(turnsPlayed)을 기준으로 변화
+            const moonEmoji = this.getMoonEmoji(this.turnsPlayed + 1);
+            const moonClass = this.getMoonClass(this.turnsPlayed + 1);
             
             moonDisplay.textContent = moonEmoji;
             moonDisplay.className = moonClass;
             
             document.getElementById('targetNumber').textContent = this.currentDay;
-            document.getElementById('targetNumberEng').textContent = this.currentDay; document.getElementById('cardCount').textContent = this.cards.length;
-            document.getElementById('cardCount').textContent = this.cards.length;          
+            document.getElementById('targetNumberEng').textContent = this.currentDay;
+            document.getElementById('cardCount').textContent = this.cards.length;
+            document.getElementById('cardCountEng').textContent = this.cards.length;
             this.updateOperators();
             this.updateCards();
             this.updateExpression();
@@ -645,7 +752,6 @@ return;
                 operatorsDiv.appendChild(opDiv);
             });
 
-            // 괄호가 선택되었으면 ( 와 ) 버튼 추가
             if (this.hasParentheses) {
                 const openParenDiv = document.createElement('div');
                 openParenDiv.className = 'operator';
@@ -679,9 +785,7 @@ return;
                 token.type === 'number' && token.cardIndex === index
             );
             
-            if (isCardUsed) {
-                return;
-            }
+            if (isCardUsed) return;
             
             const cardValue = this.cards[index];
             this.expressionTokens.push({ type: 'number', value: cardValue, cardIndex: index });
@@ -708,7 +812,7 @@ return;
             const submitBtn = document.getElementById('submitBtn');
             
             if (this.expressionTokens.length === 0) {
-expressionDiv.textContent = '';
+                expressionDiv.textContent = '';
                 submitBtn.disabled = true;
                 return;
             }
@@ -717,13 +821,11 @@ expressionDiv.textContent = '';
             let hasValidExpression = false;
             
             try {
-                // 토큰들로 수식 문자열 생성
                 this.expressionTokens.forEach((token, i) => {
                     if (i > 0) expression += ' ';
                     expression += token.value;
                 });
                 
-                // 수식 유효성 검사 및 계산
                 if (this.isValidExpression()) {
                     const result = this.calculateExpression();
                     
@@ -732,21 +834,18 @@ expressionDiv.textContent = '';
                         submitBtn.disabled = (result !== this.currentDay);
                         hasValidExpression = true;
                     } else {
-                        
-expression += ' = (정수가 아님 / Not an integer)';
-submitBtn.disabled = true;
-
+                        expression += ' = (정수가 아님 / Not an integer)';
+                        submitBtn.disabled = true;
                     }
                 }
-expressionDiv.textContent = expression || '올바른 수식을 만드세요 (Create a valid expression)';
-                
+                expressionDiv.textContent = expression || '올바른 수식을 만드세요 (Create a valid expression)';
                 
                 if (!hasValidExpression) {
                     submitBtn.disabled = true;
                 }
                 
             } catch (error) {
-expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
+                expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
                 submitBtn.disabled = true;
             }
         }
@@ -754,18 +853,16 @@ expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
         isValidExpression() {
             if (this.expressionTokens.length === 0) return false;
             
-            // 괄호 매칭 검사
             let openCount = 0;
             for (let token of this.expressionTokens) {
                 if (token.type === 'parenthesis') {
                     if (token.value === '(') openCount++;
                     else if (token.value === ')') openCount--;
-                    if (openCount < 0) return false; // 닫는 괄호가 먼저 나옴
+                    if (openCount < 0) return false;
                 }
             }
-            if (openCount !== 0) return false; // 괄호가 매칭되지 않음
+            if (openCount !== 0) return false;
             
-            // 숫자로 시작하고 숫자로 끝나는지 확인
             const firstToken = this.expressionTokens[0];
             const lastToken = this.expressionTokens[this.expressionTokens.length - 1];
             
@@ -775,19 +872,15 @@ expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
 
         calculateExpression() {
             try {
-                // 토큰들을 문자열로 변환
                 let expressionStr = '';
                 this.expressionTokens.forEach(token => {
                     expressionStr += token.value;
                 });
                 
-                // × 를 * 로, ÷ 를 / 로 변환
                 expressionStr = expressionStr.replace(/×/g, '*').replace(/÷/g, '/');
                 
-                // 안전한 계산을 위해 eval 대신 간단한 파서 사용
                 const result = this.safeEval(expressionStr);
                 
-                // 나누기 결과가 정수가 아니면 null 반환
                 if (result !== null && !Number.isInteger(result)) {
                     return null;
                 }
@@ -800,12 +893,10 @@ expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
 
         safeEval(expression) {
             try {
-                // 허용된 문자만 포함하는지 확인
                 if (!/^[0-9+\-*/().\s]+$/.test(expression)) {
                     return null;
                 }
                 
-                // Function constructor를 사용한 안전한 eval
                 const result = new Function('return (' + expression + ')')();
                 
                 return isFinite(result) ? result : null;
@@ -830,19 +921,23 @@ expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
         }
 
         skip() {
-            this.cards.push(this.randomCard());
+            // ── 패널티: penaltyCards 장 추가 ──
+            for (let i = 0; i < this.penaltyCards; i++) {
+                this.cards.push(this.randomCard());
+            }
             this.nextDay();
         }
 
         nextDay() {
+            this.turnsPlayed++;
             this.currentDay++;
             
-            if (this.currentDay > this.maxDay) {
-                this.gameOver(false, '30일이 지나서 실패했습니다!\nYou failed after 30 days!');
+            // 30턴 완료 = startDay 기준으로 30번 진행
+            if (this.turnsPlayed >= this.maxDay) {
+                this.gameOver(false, '30턴이 지나서 실패했습니다!\nYou failed after 30 turns!');
                 return;
             }
             
-            // 카드가 1장 이하면 성공! (원카드 방식)
             if (this.cards.length <= 1) {
                 this.gameOver(true, '🎉 성공!\nSuccess!');
                 return;
@@ -884,3 +979,4 @@ expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
 
 </body>
 </html>
+
