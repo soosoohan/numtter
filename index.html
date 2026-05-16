@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,13 +12,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
 <title>Numtter - Number UNO Solo Challenge | Soosooland</title>
-
-<!-- SEO Meta Tags -->
 <meta name="description" content="Create equations from 1 upward. Discard cards by matching targets. Solo math puzzle.">
 <meta name="keywords" content="넘즐, 넘털, 수수랜드, 수학 게임, 연산 게임, 원카드, numtter, number uno, math uno game, card puzzle, solo puzzle, calculation game, educational game">
 <meta name="author" content="Soosooland">
-
-<!-- Open Graph -->
 <meta property="og:title" content="Numtter - Number UNO Solo Challenge">
 <meta property="og:description" content="UNO meets math! Create equations to match ascending numbers and clear your cards.">
 <meta property="og:type" content="website">
@@ -27,7 +22,7 @@
 <meta property="og:image" content="https://soosooland.com/images/numzzle.jpeg">
 <meta property="og:site_name" content="Soosooland">
 <link rel="canonical" href="https://soosooland.com/numtter/">
-<link rel="stylesheet" href="https://soosooland.com/css/protection.css">    
+<link rel="stylesheet" href="https://soosooland.com/css/protection.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -43,26 +38,23 @@
 </script>
 <script src="https://soosooland.com/js/protection.js"></script>
 <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
- }
-        body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #2e8b8b;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    body {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #2e8b8b;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     .container {
         max-width: 700px;
         width: 100%;
+        position: relative;
     }
 
     .game-title {
@@ -80,13 +72,51 @@
         margin-bottom: 30px;
     }
 
+    /* ── 한영 토글 ── */
+    .language-toggle {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .language-btn {
+        background: rgba(255,255,255,0.3);
+        color: #ffffff;
+        border: 2px solid rgba(255,255,255,0.6);
+        padding: 10px;
+        margin: 0 3px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .language-btn.active {
+        background: rgba(255,255,255,0.95);
+        color: #2c5f2d;
+        border-color: rgba(255,255,255,1);
+        box-shadow: 0 4px 12px rgba(255,255,255,0.3);
+    }
+
+    .language-btn:hover {
+        background: rgba(255,255,255,0.4);
+        transform: translateY(-2px);
+    }
+
+    /* ── 언어 표시 제어 ── */
+    [data-lang="ko"] .lang-en { display: none; }
+    [data-lang="en"] .lang-ko { display: none; }
+
     .start-screen {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255,255,255,0.95);
         border-radius: 15px;
         padding: 30px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
+
     .game-description {
         background: #e0f7f7;
         color: #2e8b8b;
@@ -95,16 +125,12 @@
         padding: 20px;
         border-radius: 12px;
         margin-bottom: 30px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-    .operator-selection {
-        margin: 30px 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .operator-selection h3 {
-        color: #2e8b8b;
-        margin-bottom: 20px;
-    }
+    .operator-selection { margin: 30px 0; }
+
+    .operator-selection h3 { color: #2e8b8b; margin-bottom: 20px; }
 
     .operator-options {
         display: flex;
@@ -126,9 +152,7 @@
         transition: background-color 0.2s;
     }
 
-    .operator-option:hover {
-        background-color: #f0f8f8;
-    }
+    .operator-option:hover { background-color: #f0f8f8; }
 
     .operator-option input[type="checkbox"] {
         width: 20px;
@@ -136,7 +160,6 @@
         cursor: pointer;
     }
 
-    /* ── 난이도 설정 섹션 ── */
     .difficulty-section {
         background: #e0f7f7;
         border-radius: 12px;
@@ -145,10 +168,7 @@
         color: #2e8b8b;
     }
 
-    .difficulty-section h3 {
-        color: #2e8b8b;
-        margin-bottom: 16px;
-    }
+    .difficulty-section h3 { color: #2e8b8b; margin-bottom: 16px; }
 
     .difficulty-row {
         display: flex;
@@ -196,9 +216,7 @@
         transition: background-color 0.2s;
     }
 
-    .radio-option:hover {
-        background-color: #c0eeee;
-    }
+    .radio-option:hover { background-color: #c0eeee; }
 
     .radio-option input[type="radio"] {
         width: 18px;
@@ -220,44 +238,35 @@
         margin-top: 20px;
     }
 
-    .start-btn:hover {
-        background: #267070;
+    .start-btn:hover { background: #267070; }
+    .start-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    .game-screen { display: none; }
+
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
     }
 
-    .start-btn:disabled {
-        background: #ccc;
-        cursor: not-allowed;
+    .moon-inline {
+        font-size: 40px;
+        padding: 0 10px;
+        color: rgba(255,255,255,0.9);
+        filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
     }
 
-    .game-screen {
-        display: none;
-    }
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.moon-inline {
-    font-size: 40px;
-    padding: 0 10px;
-    color: rgba(255, 255, 255, 0.9);
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
-}
     .target-display {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255,255,255,0.95);
         border-radius: 15px;
         padding: 20px;
         margin-bottom: 20px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .moon-day {
-        font-size: 48px;
-        margin-bottom: 10px;
-    }
+    .moon-day { font-size: 48px; margin-bottom: 10px; }
 
     .target-number {
         font-size: 24px;
@@ -266,11 +275,11 @@
     }
 
     .operators-section {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255,255,255,0.95);
         border-radius: 15px;
         padding: 20px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .section-title {
@@ -301,16 +310,14 @@
         transition: all 0.2s ease;
     }
 
-    .operator:hover {
-        background: #267070;
-    }
+    .operator:hover { background: #267070; }
 
     .cards-section {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255,255,255,0.95);
         border-radius: 15px;
         padding: 20px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .cards {
@@ -337,10 +344,7 @@
         transition: all 0.2s ease;
     }
 
-    .card:hover {
-        border-color: #2e8b8b;
-        background: #f0f8f8;
-    }
+    .card:hover { border-color: #2e8b8b; background: #f0f8f8; }
 
     .card.selected {
         border-color: #95a5a6;
@@ -350,20 +354,17 @@
         cursor: not-allowed;
     }
 
-    .card.selected:hover {
-        border-color: #95a5a6;
-        background: #95a5a6;
-    }
+    .card.selected:hover { border-color: #95a5a6; background: #95a5a6; }
 
     .expression-display {
-    background: #f8f8f8;
-    border-radius: 8px;
-    padding: 8px;
-    margin: 10px 0;
-    text-align: center;
-    font-size: 1.2em;
-    color: #333;
-    min-height: 40px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        padding: 8px;
+        margin: 10px 0;
+        text-align: center;
+        font-size: 1.2em;
+        color: #333;
+        min-height: 40px;
     }
 
     .buttons {
@@ -383,37 +384,15 @@
         transition: all 0.2s ease;
     }
 
-    .btn-submit {
-        background: #2e8b8b;
-        color: white;
-    }
+    .btn-submit { background: #2e8b8b; color: white; }
+    .btn-submit:hover { background: #267070; }
+    .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
 
-    .btn-submit:hover {
-        background: #267070;
-    }
+    .btn-skip { background: #ff6b6b; color: white; }
+    .btn-skip:hover { background: #e55555; }
 
-    .btn-submit:disabled {
-        background: #ccc;
-        cursor: not-allowed;
-    }
-
-    .btn-skip {
-        background: #ff6b6b;
-        color: white;
-    }
-
-    .btn-skip:hover {
-        background: #e55555;
-    }
-
-    .btn-reset {
-        background: #95a5a6;
-        color: white;
-    }
-
-    .btn-reset:hover {
-        background: #7f8c8d;
-    }
+    .btn-reset { background: #95a5a6; color: white; }
+    .btn-reset:hover { background: #7f8c8d; }
 
     .status {
         text-align: center;
@@ -424,7 +403,7 @@
     }
 
     .game-over {
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0,0,0,0.8);
         position: fixed;
         top: 0;
         left: 0;
@@ -444,9 +423,7 @@
         max-width: 400px;
     }
 
-    .waning-crescent {
-        transform: scaleX(-1);
-    }
+    .waning-crescent { transform: scaleX(-1); }
 
     .back-btn {
         background: #95a5a6;
@@ -460,11 +437,9 @@
         margin-bottom: 20px;
     }
 
-    .back-btn:hover {
-        background: #7f8c8d;
-    }
+    .back-btn:hover { background: #7f8c8d; }
 
-  .back-button {
+    .back-button {
         position: absolute;
         top: 20px;
         left: 20px;
@@ -479,122 +454,148 @@
         z-index: 100;
     }
 
-    .back-button:hover {
-        background-color: #FF9494;
-        color: white;
-    }
+    .back-button:hover { background-color: #FF9494; color: white; }
+
+    .credits { text-align: center; margin-top: 20px; color: rgba(255,255,255,0.7); }
 </style>
 </head>
 <body data-game-id="numtter" data-game-type="index">
-  <button class="back-button" onclick="location.href='https://soosooland.com/'"> Soosooland </button>
-    <div class="container">
-        <div class="game-title">넘털 (NUMTTER)</div>
-        <div class="game-subtitle"></div>
+<button class="back-button" onclick="location.href='https://soosooland.com/'">Soosooland</button>
+
+<div class="container">
+    <div class="game-title">넘털 (NUMTTER)</div>
+    <div class="game-subtitle"></div>
+
+    <!-- 한영 토글 -->
+    <div class="language-toggle">
+        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한국어</button>
+        <button class="language-btn" id="btnEn" onclick="setLang('en')">English</button>
+    </div>
+
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
-     
-<div class="game-description">
-<h3>원카드의 재미에 연산학습 효과까지!</h3>
-연산기호를 선택하고, 카드로 매턴 목표숫자를 만드세요.<br>
-목표숫자는 매턴마다 1씩 늘어나며 30턴에서 끝납니다.<br>
-실패하면 카드가 추가됩니다. 두 자리 숫자 조합도 가능.<br>
-카드를 1장 이하로 줄이면 성공!<br><br>
-<h3>The fun of Uno with math learning benefits!</h3>
-Choose operators and create equations to match the target number each turn.<br>
-The target number increases by 1 each turn and the game ends after 30 turns.<br>
-Fail to match? Cards are added. Two-digit combinations allowed.<br>
-Clear down to 1 card or fewer to win!<br>
-</div>
-<div class="operator-selection">
-            <h3>사용할 연산기호를 선택하세요:<br>
-           Select operators to use:</h3>
+
+        <div class="game-description">
+            <h3>
+                <span class="lang-ko">원카드의 재미에 연산학습 효과까지!</span>
+                <span class="lang-en">The fun of Uno with math learning benefits!</span>
+            </h3>
+            <span class="lang-ko">
+                연산기호를 선택하고, 카드로 매턴 목표숫자를 만드세요.<br>
+                목표숫자는 매턴마다 1씩 늘어나며 30턴에서 끝납니다.<br>
+                실패하면 카드가 추가됩니다. 두 자리 숫자 조합도 가능.<br>
+                카드를 1장 이하로 줄이면 성공!
+            </span>
+            <span class="lang-en">
+                Choose operators and create equations to match the target number each turn.<br>
+                The target number increases by 1 each turn and the game ends after 30 turns.<br>
+                Fail to match? Cards are added. Two-digit combinations allowed.<br>
+                Clear down to 1 card or fewer to win!
+            </span>
+        </div>
+
+        <div class="operator-selection">
+            <h3>
+                <span class="lang-ko">사용할 연산기호를 선택하세요:</span>
+                <span class="lang-en">Select operators to use:</span>
+            </h3>
             <div class="operator-options">
-                <label class="operator-option">
-                <input type="checkbox" value="+" checked> + 
-                </label>
-                <label class="operator-option">
-                    <input type="checkbox" value="-"> -
-                </label>
-                <label class="operator-option">
-                    <input type="checkbox" value="×"> ×
-                </label>
-                <label class="operator-option">
-                    <input type="checkbox" value="÷"> ÷
-                </label>
-                <label class="operator-option">
-                    <input type="checkbox" value="()"> ()
-                </label>
+                <label class="operator-option"><input type="checkbox" value="+" checked> +</label>
+                <label class="operator-option"><input type="checkbox" value="-"> -</label>
+                <label class="operator-option"><input type="checkbox" value="×"> ×</label>
+                <label class="operator-option"><input type="checkbox" value="÷"> ÷</label>
+                <label class="operator-option"><input type="checkbox" value="()"> ()</label>
             </div>
         </div>
 
-        <!-- ── 난이도 설정 ── -->
         <div class="difficulty-section">
-            <h3>난이도 설정 / Difficulty Settings</h3>
-
+            <h3>
+                <span class="lang-ko">난이도 설정</span>
+                <span class="lang-en">Difficulty Settings</span>
+            </h3>
             <div class="difficulty-row">
-                <label for="startNumber">시작 숫자 (Start number, 1–99):</label>
-<input type="number" id="startNumber" min="1" max="99" value="1"
-       onblur="this.value = Math.min(99, Math.max(1, parseInt(this.value)||1))">
-
+                <label for="startNumber">
+                    <span class="lang-ko">시작 숫자 (1–99):</span>
+                    <span class="lang-en">Start number (1–99):</span>
+                </label>
+                <input type="number" id="startNumber" min="1" max="99" value="1"
+                       onblur="this.value = Math.min(99, Math.max(1, parseInt(this.value)||1))">
             </div>
-
             <div class="difficulty-row">
-                <label>실패 시 카드 추가 / Cards added on skip:</label>
+                <label>
+                    <span class="lang-ko">실패 시 카드 추가:</span>
+                    <span class="lang-en">Cards added on skip:</span>
+                </label>
                 <div class="radio-group">
                     <label class="radio-option">
-                        <input type="radio" name="penaltyCards" value="1" checked> 1장 (1 card)
+                        <input type="radio" name="penaltyCards" value="1" checked>
+                        <span class="lang-ko">1장</span><span class="lang-en">1 card</span>
                     </label>
-
-
-
-<label class="radio-option">
-    <input type="radio" name="penaltyCards" value="2"> 2장 (2 cards)
-</label>
-<label class="radio-option">
-    <input type="radio" name="penaltyCards" value="3"> 3장 (3 cards)
-</label>
+                    <label class="radio-option">
+                        <input type="radio" name="penaltyCards" value="2">
+                        <span class="lang-ko">2장</span><span class="lang-en">2 cards</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="penaltyCards" value="3">
+                        <span class="lang-ko">3장</span><span class="lang-en">3 cards</span>
+                    </label>
                 </div>
             </div>
         </div>
 
-        <button class="start-btn" id="startBtn">게임 시작<br>Start Game</button>
+        <button class="start-btn" id="startBtn">
+            <span class="lang-ko">게임 시작</span>
+            <span class="lang-en">Start Game</span>
+        </button>
     </div>
 
     <!-- 게임 화면 -->
     <div class="game-screen" id="gameScreen">
-        
-
-<div class="top-bar">
-  <button class="back-btn" id="backBtn"> 설정으로 돌아가기 <br>Back to Settings</button>
-  <div class="moon-inline" id="moonInline"><div class="moon-day" id="moonDisplay">🌙</div>
+        <div class="top-bar">
+            <button class="back-btn" id="backBtn">
+                <span class="lang-ko">설정으로 돌아가기</span>
+                <span class="lang-en">Back to Settings</span>
+            </button>
+            <div class="moon-inline" id="moonInline">
+                <div class="moon-day" id="moonDisplay">🌙</div>
             </div>
-</div>
-
-<div class="target-display">
-    <div class="target-number">목표 숫자: <span id="targetNumber">1</span><br>
-        <span style="font-size: 0.8em; color: #666;">Target number: <span id="targetNumberEng">1</span></span>
-
-</div>
         </div>
 
-
-<div class="operators-section">
-    <div class="section-title">사용 가능한 연산기호<br><span style="font-size: 1em; color: #666;">Available Operators</span>:</div>
-    <div class="operators" id="operators"></div>
-</div>
-
-<div class="cards-section">
-    <div class="section-title">내 카드들 (<span id="cardCount">1</span>장)<br><span style="font-size: 0.8em; color: #666;">Your Cards (<span id="cardCountEng">1</span> cards)</span>:</div>
-    <div class="cards" id="cards"></div>
-    
-<div class="expression-display" id="expression"></div>
-
-    <div class="buttons">
-        <button class="btn btn-submit" id="submitBtn" disabled>✓ 제출<br><span style="font-size: 0.8em;">Submit</span></button>
-        <button class="btn btn-skip" id="skipBtn">➤ 건너뛰기<br><span style="font-size: 1em;">Skip</span></button>
-        <button class="btn btn-reset" id="clearBtn">🗑️ 수식 지우기<br><span style="font-size: 0.8em;">Clear</span></button>
+        <div class="target-display">
+            <div class="target-number">
+                <span class="lang-ko">목표 숫자: <span id="targetNumber">1</span></span>
+                <span class="lang-en">Target number: <span id="targetNumberEng">1</span></span>
             </div>
-        </div>    <div class="status" id="status"></div>
+        </div>
+
+        <div class="operators-section">
+            <div class="section-title">
+                <span class="lang-ko">사용 가능한 연산기호</span>
+                <span class="lang-en">Available Operators</span>
+            </div>
+            <div class="operators" id="operators"></div>
+        </div>
+
+        <div class="cards-section">
+            <div class="section-title">
+                <span class="lang-ko">내 카드들 (<span id="cardCount">1</span>장)</span>
+                <span class="lang-en">Your Cards (<span id="cardCountEng">1</span> cards)</span>
+            </div>
+            <div class="cards" id="cards"></div>
+            <div class="expression-display" id="expression"></div>
+            <div class="buttons">
+                <button class="btn btn-submit" id="submitBtn" disabled>
+                    ✓ <span class="lang-ko">제출</span><span class="lang-en">Submit</span>
+                </button>
+                <button class="btn btn-skip" id="skipBtn">
+                    ➤ <span class="lang-ko">건너뛰기</span><span class="lang-en">Skip</span>
+                </button>
+                <button class="btn btn-reset" id="clearBtn">
+                    🗑️ <span class="lang-ko">수식 지우기</span><span class="lang-en">Clear</span>
+                </button>
+            </div>
+        </div>
+        <div class="status" id="status"></div>
     </div>
 </div>
 
@@ -602,31 +603,80 @@ Clear down to 1 card or fewer to win!<br>
     <div class="game-over-content">
         <h2 id="gameOverTitle"></h2>
         <p id="gameOverMessage"></p>
-        <button class="btn btn-submit" onclick="location.reload()">다시 시작<br><span style="font-size: 1em;">Restart</span></button>
+        <button class="btn btn-submit" onclick="location.reload()">
+            <span class="lang-ko">다시 시작</span><span class="lang-en">Restart</span>
+        </button>
     </div>
 </div>
-<div class="credits">       
-<p> © 2025 Soosoo Han. All rights reserved.</p>
-    </div>
+
+<div class="credits">
+    <p>© 2025 Soosoo Han. All rights reserved.</p>
+</div>
+
 <script>
+    // ── 한영 토글 ──────────────────────────────────
+    function setLang(lang) {
+        document.documentElement.setAttribute('data-lang', lang);
+        document.getElementById('btnKo').classList.toggle('active', lang === 'ko');
+        document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+        localStorage.setItem('soosoo-lang', lang);
+    }
+
+    (function () {
+        const saved = localStorage.getItem('soosoo-lang') || 'ko';
+        setLang(saved);
+    })();
+    // ───────────────────────────────────────────────
+
+    // ── 언어별 텍스트 ──
+    const T = {
+        ko: {
+            selectOp:    '최소 하나의 연산기호를 선택해주세요!',
+            badStart:    '시작 숫자는 1~99 사이로 입력해주세요!',
+            notInteger:  '정수가 아님',
+            makeExpr:    '올바른 수식을 만드세요',
+            invalidExpr: '잘못된 수식입니다',
+            tooManyCards:'카드가 너무 많아져서 패배했습니다!',
+            over30:      '30턴이 지나서 실패했습니다!',
+            successTitle:'🎉 성공!',
+            failTitle:   '😢 실패',
+        },
+        en: {
+            selectOp:    'Please select at least one operator!',
+            badStart:    'Enter a start number between 1 and 99!',
+            notInteger:  'Not an integer',
+            makeExpr:    'Create a valid expression',
+            invalidExpr: 'Invalid expression',
+            tooManyCards:'Game Over! You have too many cards!',
+            over30:      'You failed after 30 turns!',
+            successTitle:'🎉 Success!',
+            failTitle:   '😢 Game Over',
+        }
+    };
+
+    function t(key) {
+        const lang = document.documentElement.getAttribute('data-lang') || 'ko';
+        return T[lang][key];
+    }
+
     class NumtterGame {
         constructor() {
             this.currentDay = 1;
-            this.startDay = 1;       // ← 추가: 시작 숫자
-            this.maxDay = 30;        // 턴 수 (항상 30턴)
-            this.penaltyCards = 1;   // ← 추가: 패널티 카드 수
+            this.startDay = 1;
+            this.maxDay = 30;
+            this.penaltyCards = 1;
             this.cards = [];
             this.operators = [];
             this.expressionTokens = [];
             this.maxCards = 20;
-            
+
             this.bindStartEvents();
         }
 
         bindStartEvents() {
             document.getElementById('startBtn').onclick = () => this.startGame();
             document.getElementById('backBtn').onclick = () => this.backToStart();
-            
+
             const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', () => this.updateStartButton());
@@ -640,43 +690,36 @@ Clear down to 1 card or fewer to win!<br>
         }
 
         startGame() {
-            // 연산기호 가져오기
             const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
             this.operators = [];
             this.hasParentheses = false;
-            
+
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
-                    if (checkbox.value === '()') {
-                        this.hasParentheses = true;
-                    } else {
-                        this.operators.push(checkbox.value);
-                    }
+                    if (checkbox.value === '()') this.hasParentheses = true;
+                    else this.operators.push(checkbox.value);
                 }
             });
 
             if (this.operators.length === 0 && !this.hasParentheses) {
-                alert('최소 하나의 연산기호를 선택해주세요! (Please select at least one operator!)');
+                alert(t('selectOp'));
                 return;
             }
 
-            // ── 시작 숫자 읽기 ──
             const startInput = parseInt(document.getElementById('startNumber').value, 10);
             if (isNaN(startInput) || startInput < 1 || startInput > 99) {
-                alert('시작 숫자는 1~99 사이로 입력해주세요! (Enter a start number between 1 and 99!)');
+                alert(t('badStart'));
                 return;
             }
             this.startDay = startInput;
             this.currentDay = startInput;
 
-            // ── 패널티 카드 수 읽기 ──
             const penaltyRadio = document.querySelector('input[name="penaltyCards"]:checked');
             this.penaltyCards = penaltyRadio ? parseInt(penaltyRadio.value, 10) : 1;
 
-            // 게임 초기화
             this.cards = [this.randomCard(), this.randomCard(), this.randomCard(), this.randomCard()];
             this.expressionTokens = [];
-            this.turnsPlayed = 0;   // 진행한 턴 수 카운터
+            this.turnsPlayed = 0;
 
             document.getElementById('startScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'block';
@@ -700,9 +743,7 @@ Clear down to 1 card or fewer to win!<br>
             document.getElementById('clearBtn').onclick = () => this.clearExpression();
         }
 
-        randomCard() {
-            return Math.floor(Math.random() * 10) + 1;
-        }
+        randomCard() { return Math.floor(Math.random() * 10) + 1; }
 
         getMoonEmoji(day) {
             if (day <= 5) return '🌙';
@@ -712,36 +753,31 @@ Clear down to 1 card or fewer to win!<br>
             return '🌙';
         }
 
-        getMoonClass(day) {
-            return day >= 25 ? 'waning-crescent' : '';
-        }
+        getMoonClass(day) { return day >= 25 ? 'waning-crescent' : ''; }
 
         updateDisplay() {
             const moonDisplay = document.getElementById('moonDisplay');
-            // 달은 진행 턴(turnsPlayed)을 기준으로 변화
-            const moonEmoji = this.getMoonEmoji(this.turnsPlayed + 1);
-            const moonClass = this.getMoonClass(this.turnsPlayed + 1);
-            
-            moonDisplay.textContent = moonEmoji;
-            moonDisplay.className = moonClass;
-            
+            moonDisplay.textContent = this.getMoonEmoji(this.turnsPlayed + 1);
+            moonDisplay.className = this.getMoonClass(this.turnsPlayed + 1);
+
             document.getElementById('targetNumber').textContent = this.currentDay;
             document.getElementById('targetNumberEng').textContent = this.currentDay;
             document.getElementById('cardCount').textContent = this.cards.length;
             document.getElementById('cardCountEng').textContent = this.cards.length;
+
             this.updateOperators();
             this.updateCards();
             this.updateExpression();
 
             if (this.cards.length >= this.maxCards) {
-                this.gameOver(false, '카드가 너무 많아져서 패배했습니다!\nGame Over! You have too many cards!');
+                this.gameOver(false, 'tooManyCards');
             }
         }
 
         updateOperators() {
             const operatorsDiv = document.getElementById('operators');
             operatorsDiv.innerHTML = '';
-            
+
             this.operators.forEach((op, index) => {
                 const opDiv = document.createElement('div');
                 opDiv.className = 'operator';
@@ -751,24 +787,19 @@ Clear down to 1 card or fewer to win!<br>
             });
 
             if (this.hasParentheses) {
-                const openParenDiv = document.createElement('div');
-                openParenDiv.className = 'operator';
-                openParenDiv.textContent = '(';
-                openParenDiv.onclick = () => this.selectParenthesis('(');
-                operatorsDiv.appendChild(openParenDiv);
-
-                const closeParenDiv = document.createElement('div');
-                closeParenDiv.className = 'operator';
-                closeParenDiv.textContent = ')';
-                closeParenDiv.onclick = () => this.selectParenthesis(')');
-                operatorsDiv.appendChild(closeParenDiv);
+                ['(', ')'].forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'operator';
+                    div.textContent = p;
+                    div.onclick = () => this.selectParenthesis(p);
+                    operatorsDiv.appendChild(div);
+                });
             }
         }
 
         updateCards() {
             const cardsDiv = document.getElementById('cards');
             cardsDiv.innerHTML = '';
-            
             this.cards.forEach((card, index) => {
                 const cardDiv = document.createElement('div');
                 cardDiv.className = 'card';
@@ -779,24 +810,18 @@ Clear down to 1 card or fewer to win!<br>
         }
 
         selectCard(index) {
-            const isCardUsed = this.expressionTokens.some(token => 
-                token.type === 'number' && token.cardIndex === index
+            const isCardUsed = this.expressionTokens.some(
+                token => token.type === 'number' && token.cardIndex === index
             );
-            
             if (isCardUsed) return;
-            
-            const cardValue = this.cards[index];
-            this.expressionTokens.push({ type: 'number', value: cardValue, cardIndex: index });
-            
-            const cardDivs = document.querySelectorAll('.card');
-            cardDivs[index].classList.add('selected');
-            
+
+            this.expressionTokens.push({ type: 'number', value: this.cards[index], cardIndex: index });
+            document.querySelectorAll('.card')[index].classList.add('selected');
             this.updateExpression();
         }
 
         selectOperator(index) {
-            const operator = this.operators[index];
-            this.expressionTokens.push({ type: 'operator', value: operator });
+            this.expressionTokens.push({ type: 'operator', value: this.operators[index] });
             this.updateExpression();
         }
 
@@ -808,173 +833,123 @@ Clear down to 1 card or fewer to win!<br>
         updateExpression() {
             const expressionDiv = document.getElementById('expression');
             const submitBtn = document.getElementById('submitBtn');
-            
+
             if (this.expressionTokens.length === 0) {
                 expressionDiv.textContent = '';
                 submitBtn.disabled = true;
                 return;
             }
 
-            let expression = '';
+            let expression = this.expressionTokens.map(tok => tok.value).join(' ');
             let hasValidExpression = false;
-            
+
             try {
-                this.expressionTokens.forEach((token, i) => {
-                    if (i > 0) expression += ' ';
-                    expression += token.value;
-                });
-                
                 if (this.isValidExpression()) {
                     const result = this.calculateExpression();
-                    
                     if (result !== null && Number.isInteger(result)) {
                         expression += ` = ${result}`;
                         submitBtn.disabled = (result !== this.currentDay);
                         hasValidExpression = true;
                     } else {
-                        expression += ' = (정수가 아님 / Not an integer)';
+                        expression += ` = (${t('notInteger')})`;
                         submitBtn.disabled = true;
                     }
                 }
-                expressionDiv.textContent = expression || '올바른 수식을 만드세요 (Create a valid expression)';
-                
-                if (!hasValidExpression) {
-                    submitBtn.disabled = true;
-                }
-                
+                expressionDiv.textContent = expression || t('makeExpr');
+                if (!hasValidExpression) submitBtn.disabled = true;
             } catch (error) {
-                expressionDiv.textContent = '잘못된 수식입니다 (Invalid expression)';
+                expressionDiv.textContent = t('invalidExpr');
                 submitBtn.disabled = true;
             }
         }
 
         isValidExpression() {
             if (this.expressionTokens.length === 0) return false;
-            
             let openCount = 0;
             for (let token of this.expressionTokens) {
                 if (token.type === 'parenthesis') {
                     if (token.value === '(') openCount++;
-                    else if (token.value === ')') openCount--;
+                    else openCount--;
                     if (openCount < 0) return false;
                 }
             }
             if (openCount !== 0) return false;
-            
-            const firstToken = this.expressionTokens[0];
-            const lastToken = this.expressionTokens[this.expressionTokens.length - 1];
-            
-            return (firstToken.type === 'number' || firstToken.value === '(') && 
-                   (lastToken.type === 'number' || lastToken.value === ')');
+            const first = this.expressionTokens[0];
+            const last = this.expressionTokens[this.expressionTokens.length - 1];
+            return (first.type === 'number' || first.value === '(') &&
+                   (last.type === 'number' || last.value === ')');
         }
 
         calculateExpression() {
             try {
-                let expressionStr = '';
-                this.expressionTokens.forEach(token => {
-                    expressionStr += token.value;
-                });
-                
-                expressionStr = expressionStr.replace(/×/g, '*').replace(/÷/g, '/');
-                
-                const result = this.safeEval(expressionStr);
-                
-                if (result !== null && !Number.isInteger(result)) {
-                    return null;
-                }
-                
-                return result;
-            } catch (error) {
-                return null;
-            }
+                let str = this.expressionTokens.map(tok => tok.value).join('');
+                str = str.replace(/×/g, '*').replace(/÷/g, '/');
+                const result = this.safeEval(str);
+                return (result !== null && !Number.isInteger(result)) ? null : result;
+            } catch { return null; }
         }
 
         safeEval(expression) {
             try {
-                if (!/^[0-9+\-*/().\s]+$/.test(expression)) {
-                    return null;
-                }
-                
+                if (!/^[0-9+\-*/().\s]+$/.test(expression)) return null;
                 const result = new Function('return (' + expression + ')')();
-                
                 return isFinite(result) ? result : null;
-            } catch (error) {
-                return null;
-            }
+            } catch { return null; }
         }
 
         submit() {
             if (this.expressionTokens.length === 0) return;
-            
-            const usedCardIndices = this.expressionTokens
-                .filter(token => token.type === 'number')
-                .map(token => token.cardIndex)
+            const usedIndices = this.expressionTokens
+                .filter(tok => tok.type === 'number')
+                .map(tok => tok.cardIndex)
                 .sort((a, b) => b - a);
-            
-            usedCardIndices.forEach(index => {
-                this.cards.splice(index, 1);
-            });
-            
+            usedIndices.forEach(i => this.cards.splice(i, 1));
             this.nextDay();
         }
 
         skip() {
-            // ── 패널티: penaltyCards 장 추가 ──
-            for (let i = 0; i < this.penaltyCards; i++) {
-                this.cards.push(this.randomCard());
-            }
+            for (let i = 0; i < this.penaltyCards; i++) this.cards.push(this.randomCard());
             this.nextDay();
         }
 
         nextDay() {
             this.turnsPlayed++;
             this.currentDay++;
-            
-            // 30턴 완료 = startDay 기준으로 30번 진행
+
             if (this.turnsPlayed >= this.maxDay) {
-                this.gameOver(false, '30턴이 지나서 실패했습니다!\nYou failed after 30 turns!');
+                this.gameOver(false, 'over30');
                 return;
             }
-            
             if (this.cards.length <= 1) {
-                this.gameOver(true, '🎉 성공!\nSuccess!');
+                this.gameOver(true, null);
                 return;
             }
-            
+
             this.expressionTokens = [];
             this.resetCardStates();
             this.updateDisplay();
         }
 
         resetCardStates() {
-            const cardDivs = document.querySelectorAll('.card');
-            cardDivs.forEach(card => card.classList.remove('selected'));
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
         }
 
         clearExpression() {
             this.expressionTokens = [];
-            const cardDivs = document.querySelectorAll('.card');
-            cardDivs.forEach(card => card.classList.remove('selected'));
+            this.resetCardStates();
             this.updateExpression();
         }
 
-        gameOver(success, message) {
-            const gameOverDiv = document.getElementById('gameOver');
-            const titleDiv = document.getElementById('gameOverTitle');
-            const messageDiv = document.getElementById('gameOverMessage');
-            
-            titleDiv.textContent = success ? '🎉 성공!\nSuccess!' : '😢 실패\n Game over!';
-            
-            gameOverDiv.style.display = 'flex';
+        gameOver(success, msgKey) {
+            document.getElementById('gameOverTitle').textContent =
+                success ? t('successTitle') : t('failTitle');
+            document.getElementById('gameOverMessage').textContent =
+                msgKey ? t(msgKey) : '';
+            document.getElementById('gameOver').style.display = 'flex';
         }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-        new NumtterGame();
-    });
+    window.addEventListener('DOMContentLoaded', () => { new NumtterGame(); });
 </script>
-
-
 </body>
 </html>
-
