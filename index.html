@@ -457,7 +457,18 @@
     .back-button:hover { background-color: #FF9494; color: white; }
 
     .credits { text-align: center; margin-top: 20px; color: rgba(255,255,255,0.7); }
+    
+    .skip-hint {
+    text-align: center;
+    font-size: 1.0rem;
+    color: #2e8b8b;
+    margin-top: 6px;
+}
+
 </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
 </head>
 <body data-game-id="numtter" data-game-type="index">
 <button class="back-button" onclick="location.href='https://soosooland.com/'">Soosooland</button>
@@ -583,17 +594,26 @@
             </div>
             <div class="cards" id="cards"></div>
             <div class="expression-display" id="expression"></div>
-            <div class="buttons">
-                <button class="btn btn-submit" id="submitBtn" disabled>
-                    ✓ <span class="lang-ko">제출</span><span class="lang-en">Submit</span>
-                </button>
-                <button class="btn btn-skip" id="skipBtn">
-                    ➤ <span class="lang-ko">건너뛰기</span><span class="lang-en">Skip</span>
-                </button>
-                <button class="btn btn-reset" id="clearBtn">
-                    🗑️ <span class="lang-ko">수식 지우기</span><span class="lang-en">Clear</span>
-                </button>
-            </div>
+
+<div class="buttons">
+    <button class="btn btn-submit" id="submitBtn" disabled>
+        ✓ <span class="lang-ko">제출</span><span class="lang-en">Submit</span>
+    </button>
+    <button class="btn btn-skip" id="skipBtn">
+        ➤ <span class="lang-ko">건너뛰기</span><span class="lang-en">Skip</span>
+    </button>
+    <button class="btn btn-reset" id="clearBtn">
+        🗑️ <span class="lang-ko">수식 지우기</span><span class="lang-en">Clear</span>
+    </button>
+</div>
+
+<!-- 건너뛰기 안내 추가 -->
+<div class="skip-hint">
+    <span class="lang-ko">목표 숫자를 만들면 제출, 카드가 안 되면 건너뛰기!</span>
+    <span class="lang-en">Made it? Submit! Cards won’t work? Skip!</span>
+</div>
+
+<div class="status" id="status"></div>
         </div>
         <div class="status" id="status"></div>
     </div>
@@ -940,14 +960,43 @@
             this.updateExpression();
         }
 
-        gameOver(success, msgKey) {
-            document.getElementById('gameOverTitle').textContent =
-                success ? t('successTitle') : t('failTitle');
-            document.getElementById('gameOverMessage').textContent =
-                msgKey ? t(msgKey) : '';
-            document.getElementById('gameOver').style.display = 'flex';
-        }
-    }
+
+
+gameOver(success, msgKey) {
+    document.getElementById('gameOverTitle').textContent =
+        success ? t('successTitle') : t('failTitle');
+    document.getElementById('gameOverMessage').textContent =
+        msgKey ? t(msgKey) : '';
+    document.getElementById('gameOver').style.display = 'flex';
+    
+    if (success) this.triggerConfetti();
+}
+
+triggerConfetti() {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        pointer-events: none;
+    `;
+    document.body.appendChild(canvas);
+    
+    const myConfetti = confetti.create(canvas, { resize: true });
+    
+    // 왼쪽
+    myConfetti({ particleCount: 80, angle: 60, spread: 70, origin: { x: 0, y: 0.7 } });
+    // 오른쪽
+    myConfetti({ particleCount: 80, angle: 120, spread: 70, origin: { x: 1, y: 0.7 } });
+    
+    setTimeout(() => canvas.remove(), 4000);
+}
+
+}
+
 
     window.addEventListener('DOMContentLoaded', () => { new NumtterGame(); });
 </script>
