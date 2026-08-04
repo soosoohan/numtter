@@ -573,6 +573,11 @@
             <span class="lang-ko">게임 시작</span>
             <span class="lang-en">Start Game</span>
         </button>
+        <button class="start-btn" id="randomBtn" style="background:#ff9f43; margin-left:8px;">
+            <span class="lang-ko">🎲 랜덤 시작</span>
+            <span class="lang-en">🎲 Random Start</span>
+        </button>
+
     </div>
 
     <!-- 게임 화면 -->
@@ -717,6 +722,7 @@
 
         bindStartEvents() {
             document.getElementById('startBtn').onclick = () => this.startGame();
+            document.getElementById('randomBtn').onclick = () => this.startRandomGame();
             document.getElementById('backBtn').onclick = () => this.backToStart();
 
             const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
@@ -732,42 +738,62 @@
         }
 
         startGame() {
-            const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
-            this.operators = [];
-            this.hasParentheses = false;
+    const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
+    this.operators = [];
+    this.hasParentheses = false;
 
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    if (checkbox.value === '()') this.hasParentheses = true;
-                    else this.operators.push(checkbox.value);
-                }
-            });
-
-            if (this.operators.length === 0 && !this.hasParentheses) {
-                alert(t('selectOp'));
-                return;
-            }
-
-            const startInput = parseInt(document.getElementById('startNumber').value, 10);
-            if (isNaN(startInput) || startInput < 1 || startInput > 99) {
-                alert(t('badStart'));
-                return;
-            }
-            this.startDay = startInput;
-            this.currentDay = startInput;
-
-            const penaltyRadio = document.querySelector('input[name="penaltyCards"]:checked');
-            this.penaltyCards = penaltyRadio ? parseInt(penaltyRadio.value, 10) : 1;
-
-            this.cards = [this.randomCard(), this.randomCard(), this.randomCard(), this.randomCard()];
-            this.expressionTokens = [];
-            this.turnsPlayed = 0;
-
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('gameScreen').style.display = 'block';
-
-            this.init();
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            if (checkbox.value === '()') this.hasParentheses = true;
+            else this.operators.push(checkbox.value);
         }
+    });
+
+    if (this.operators.length === 0 && !this.hasParentheses) {
+        alert(t('selectOp'));
+        return;
+    }
+
+    const startInput = parseInt(document.getElementById('startNumber').value, 10);
+    if (isNaN(startInput) || startInput < 1 || startInput > 99) {
+        alert(t('badStart'));
+        return;
+    }
+    this.startDay = startInput;
+    this.currentDay = startInput;
+
+    const penaltyRadio = document.querySelector('input[name="penaltyCards"]:checked');
+    this.penaltyCards = penaltyRadio ? parseInt(penaltyRadio.value, 10) : 1;
+
+    this.beginPlay();
+}
+
+startRandomGame() {
+    const allOps = ['+', '-', '×', '÷'];
+    const shuffled = allOps.sort(() => Math.random() - 0.5);
+    const opCount = Math.floor(Math.random() * 3) + 2; // 2~4개
+    this.operators = shuffled.slice(0, opCount);
+
+    const hasDivision = this.operators.includes('÷');
+    // 나눗셈이 포함되면 괄호는 사용하지 않음
+    this.hasParentheses = hasDivision ? false : Math.random() < 0.5;
+
+    this.startDay = Math.floor(Math.random() * 20) + 1;
+    this.currentDay = this.startDay;
+    this.penaltyCards = Math.floor(Math.random() * 3) + 1;
+
+    this.beginPlay();
+}
+beginPlay() {
+    this.cards = [this.randomCard(), this.randomCard(), this.randomCard(), this.randomCard()];
+    this.expressionTokens = [];
+    this.turnsPlayed = 0;
+
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('gameScreen').style.display = 'block';
+
+    this.init();
+}
 
         backToStart() {
             document.getElementById('gameScreen').style.display = 'none';
