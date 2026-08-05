@@ -64,6 +64,11 @@
         flex-direction: column;
         align-items: center;
     }
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 20px;
+  }
 
     .container {
         max-width: 700px;
@@ -500,21 +505,24 @@
 </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-
 <body data-game-id="numtter" data-game-type="index" onload="initLanguage()">
-<button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
-  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
-</button>
-<div class="container">
-    <div class="game-title">넘털 (NUMTTER)</div>
-    <div class="game-subtitle"></div>
-
-    <!-- 한영 토글 -->
+  <!-- 한영 토글 -->
     <div class="language-toggle">
         <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한</button>
         <button class="language-btn" id="btnEn" onclick="setLang('en')">EN</button>
     </div>
+<header>
+<button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
+  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
+</button>
+  <div class="game-title">넘털 (NUMTTER)</div>
+    <div class="game-subtitle"></div>
 
+  
+</header>
+<div class="container">
+  
+  
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
 
