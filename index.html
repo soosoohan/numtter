@@ -468,17 +468,11 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 
     .waning-crescent { transform: scaleX(-1); }
 
-    .back-btn {
+    .back-btn { position: fixed; top: max(48px, env(safe-area-inset-top) + 20px); left: 22px; width: 44px; height: 44px; padding: 0; font-size: 1.8em; font-weight: bold; 
         background: #95a5a6;
         color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 14px;
-        font-weight: bold;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
+border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;z-index: 100;}
+{
 
     .back-btn:hover { background: #7f8c8d; }
   
@@ -497,15 +491,15 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     width: 40px;
     height: 40px;
   }
+.back-btn 
+{ top: max(30px, env(safe-area-inset-top) + 10px); left: 10px; width: 40px; height: 40px; font-size: 1.5em; }
   }
+
 
 </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body data-game-id="numtter" data-game-type="index" onload="initLanguage()">
-<button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
-  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
-</button>
 
   <!-- 한영 토글 -->
     <div class="language-toggle">
@@ -513,6 +507,9 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
         <button class="language-btn" id="btnEn" onclick="setLang('en')">EN</button>
     </div>
 <div class="container">
+<button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
+  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
+</button>
   <div class="game-title lang-ko">넘털</div>
   <div class="game-title lang-en">NUMTTER</div>
   <div class="game-subtitle"></div>
@@ -605,10 +602,7 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     <!-- 게임 화면 -->
     <div class="game-screen" id="gameScreen">
         <div class="top-bar">
-            <button class="back-btn" id="backBtn">
-                <span class="lang-ko">설정으로 돌아가기</span>
-                <span class="lang-en">Back to Settings</span>
-            </button>
+            <button class="back-btn" id="backBtn">←</button>
             <div class="moon-inline" id="moonInline">
                 <div class="moon-day" id="moonDisplay">🌙</div>
             </div>
