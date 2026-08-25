@@ -499,7 +499,7 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
 </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body data-game-id="numtter" data-game-type="index" onload="initLanguage()">
+<body data-game-id="numtter" data-game-type="index">
 <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
   <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
 </button>
@@ -677,20 +677,13 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
         document.getElementById('btnEn').classList.toggle('active', lang === 'en');
         localStorage.setItem('soosoo-lang', lang);
     }
+(function () {
+    const saved = localStorage.getItem('soosoo-lang')
+        || (navigator.language.startsWith('ko') ? 'ko' : 'en');
+    setLang(saved);
+})();
 
-    (function () {
-        const saved = localStorage.getItem('soosoo-lang') || 'ko';
-        setLang(saved);
-    })();
-    function initLanguage() {
-  const saved = localStorage.getItem('soosoo-lang');
-  if (saved) {
-    toggleLanguage(saved); // 저장된 값 우선
-  } else {
-    const lang = navigator.language.startsWith('ko') ? 'ko' : 'en';
-    toggleLanguage(lang); // 브라우저 언어 감지
-  }
-}
+  
     // ── 언어별 텍스트 ──
     const T = {
         ko: {
