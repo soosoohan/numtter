@@ -101,6 +101,18 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     transition: transform 0.1s;
 }
 
+.main-title {
+    margin: 60px 0 20px;
+    font-size: 0;
+}
+
+.main-title img {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto;
+}
     .game-title {
         text-align: center;
         color: white;
@@ -511,12 +523,12 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
         <button class="language-btn" id="btnEn" onclick="setLang('en')">EN</button>
     </div>
 <div class="container">
-  <div class="game-title lang-ko">넘털</div>
-  <div class="game-title lang-en">NUMTTER</div>
-  <div class="game-subtitle"></div>
+ <div class="header">
+   <h1 class="main-title">
+        <img src="banner.jpeg" alt="넘털 NUMTTER">
+    </h1> </div>
 
-  
-  
+  <div class="game-subtitle"></div>
   
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
