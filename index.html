@@ -55,6 +55,7 @@
 </script>
 <script src="https://soosooland.com/js/protection.js"></script>
 <style>
+    :root {--content-width: 800px;}
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -69,7 +70,7 @@
     }
 
     .container {
-        max-width: 700px;
+        max-width: 800px;
         width: 100%;
         position: relative;
     }
@@ -102,16 +103,19 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
 .main-title {
-    margin: 60px 0 20px;
+    margin: 0 auto;
     font-size: 0;
 }
 
 .main-title img {
     display: block;
     width: 100%;
-    max-width: 900px;
-    height: auto;
-    margin: 0 auto;
+max-width: var(--content-width);
+    border-radius: 16px;
+  height: auto;
+  margin: 0 auto;
+margin-bottom: 20px;
+
 }
     .game-title {
         text-align: center;
@@ -131,8 +135,8 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     /* ── 한영 토글 ── */
     .language-toggle {
         position: absolute;
-        right: 12px;
-        top: 12px;
+        right: 30px;
+        top: 0;
     }
 
     .language-btn {
@@ -166,11 +170,10 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     [data-lang="en"] .lang-ko { display: none; }
 
     .start-screen {
-        background: rgba(255,255,255,0.95);
+        background: #2e8b8b;
         border-radius: 15px;
         padding: 30px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .game-description {
@@ -184,13 +187,13 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .operator-selection { margin: 30px 0; }
+    .operator-selection { margin: 0 auto; }
 
-    .operator-selection h3 { color: #2e8b8b; margin-bottom: 20px; }
+    .operator-selection h3 { color: white; margin-bottom: 20px; }
 
     .operator-options {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         justify-content: center;
         flex-wrap: wrap;
     }
@@ -201,7 +204,7 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
         gap: 8px;
         font-size: 18px;
         font-weight: bold;
-        color: #2e8b8b;
+        color: white;
         cursor: pointer;
         padding: 10px;
         border-radius: 8px;
@@ -242,7 +245,7 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
 
     .difficulty-row input[type="number"] {
-        width: 70px;
+        width: 90px;
         padding: 6px 10px;
         font-size: 18px;
         font-weight: bold;
@@ -282,7 +285,7 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
 
     .start-btn {
-        background: #2e8b8b;
+        background: #145454;
         color: white;
         border: none;
         padding: 15px 30px;
@@ -518,20 +521,21 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
 </button>
 
   <!-- 한영 토글 -->
-    <div class="language-toggle">
-        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한</button>
-        <button class="language-btn" id="btnEn" onclick="setLang('en')">EN</button>
-    </div>
+    
 <div class="container">
- <div class="header">
-   <h1 class="main-title">
-        <img src="banner3.jpeg" alt="넘털 NUMTTER">
-    </h1> </div>
-
+ 
   <div class="game-subtitle"></div>
   
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
+<div class="header">
+   <div class="language-toggle">
+        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한</button>
+        <button class="language-btn" id="btnEn" onclick="setLang('en')">EN</button>
+    </div>
+   <h1 class="main-title">
+        <img src="https://soosooland.com/numtter/banner3.jpeg" alt="넘털 NUMTTER">
+    </h1> </div>
 
         <div class="game-description">
             <h3>
@@ -563,7 +567,7 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
                 <label class="operator-option"><input type="checkbox" value="×"> ×</label>
                 <label class="operator-option"><input type="checkbox" value="÷"> ÷</label>
                 <label class="operator-option"><input type="checkbox" value="()"> ()</label>
-            </div>
+     </div>
         </div>
 
         <div class="difficulty-section">
