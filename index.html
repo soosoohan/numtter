@@ -93,48 +93,9 @@
  .back-button img {width: 100%;height: 100%;object-fit: cover;display: block;}
 
   .back-button:active {transform: scale(0.92);transition: transform 0.1s;}
-
-    .container {
-        max-width: 800px;
-        width: 100%;
-        position: relative;
-    }
-
-.main-title {
-    margin: 0 auto;
-    font-size: 0;
-}
-
-.main-title img {
-    display: block;
-    width: 100%;
-max-width: var(--content-width);
-    border-radius: 16px;
-  height: auto;
-  margin: 0 auto;
-margin-bottom: 20px;
-
-}
-    .game-title {
-        text-align: center;
-        color: white;
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .game-subtitle {
-        text-align: center;
-        color: #b8e6e6;
-        font-size: 18px;
-        margin-bottom: 30px;
-    }
-
-    /* ── 한영 토글 ── */
-    .language-toggle {
-        position: absolute;
-        right: 30px;
-        top: 0;
+ .language-toggle {
+           display: flex;
+           top: 0;
     }
 
     .language-btn {
@@ -167,6 +128,49 @@ margin-bottom: 20px;
     [data-lang="ko"] .lang-en { display: none; }
     [data-lang="en"] .lang-ko { display: none; }
 
+ header {
+  text-align: center;
+  margin: 0 auto 30px;
+  max-width: 800px;
+}
+
+.main-title {
+    margin: 0 auto;
+    font-size: 0;
+}
+
+.main-title img {
+    display: block;
+    width: 100%;
+max-width: var(--content-width);
+    border-radius: 16px;
+  height: auto;
+  margin: 0 auto;
+margin-bottom: 20px;
+
+}
+  
+    .container {
+        max-width: 800px;
+        width: 100%;
+        position: relative;
+    }
+
+    .game-title {
+        text-align: center;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .game-subtitle {
+        text-align: center;
+        color: #b8e6e6;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+   
     .start-screen {
         background: #2e8b8b;
         border-radius: 15px;
@@ -498,16 +502,33 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
     color: #2e8b8b;
     margin-top: 6px;
 }
+header { display: flow-root; height: auto !important; }
+.main-title { height: auto !important; }
+.main-title img { position: static !important; float: none !important; }
 
 
 </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body data-game-id="numtter" data-game-type="index">
-<button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
+<link rel="stylesheet" href="toolbar.css">
+<div class="toolbar">
+ <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
   <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
 </button>
+  <div class="language-toggle">
+        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한국어</button>
+        <button class="language-btn" id="btnEn" onclick="setLang('en')">English</button>
+    </div>
+ </div> <!-- .toolbar -->
+<header>
+  <h1 class="main-title">
+        <img src="https://soosooland.com/numtter/banner3.jpeg" alt="넘털 NUMTTER">
+    </h1>
+  </header>
 
+  
+  
   <!-- 한영 토글 -->
     
 <div class="container">
@@ -516,14 +537,6 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
   
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
-<div class="header">
-   <div class="language-toggle">
-        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한국어</button>
-        <button class="language-btn" id="btnEn" onclick="setLang('en')">English</button>
-    </div>
-   <h1 class="main-title">
-        <img src="https://soosooland.com/numtter/banner3.jpeg" alt="넘털 NUMTTER">
-    </h1> </div>
 
         <div class="game-description">
             <h3>
