@@ -64,7 +64,7 @@
         margin: 0;
         width: 800px;
         max-width: 100%;
-        padding: 10px;
+        padding: 20px;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -166,15 +166,12 @@ header {
         cursor: pointer;
         font-size: clamp(0.9rem, 2vw, 1rem);
         font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     .language-btn.active {
         background: rgba(255,255,255,0.95);
         color: #2c5f2d;
         border-color: rgba(255,255,255,1);
-        box-shadow: 0 4px 12px rgba(255,255,255,0.3);
     }
 
     .language-btn:hover {
@@ -528,6 +525,10 @@ header {
 header { display: flow-root; height: auto !important; }
 .main-title { height: auto !important; }
 .main-title img { position: static !important; float: none !important; }
+@media (max-width: 480px) {  
+.back-button { width: 40px;height: 40px;}
+body { padding: 10px; }
+}
 
 </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
