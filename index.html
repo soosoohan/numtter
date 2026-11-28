@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Numtter - Number UNO Solo Challenge | 수수랜드 Soosooland</title>
@@ -80,7 +80,6 @@
   align-items: center;
   box-sizing: border-box;
   }
-
 .back-button {
   margin-left: 44px;
   flex-shrink: 0;
@@ -96,6 +95,63 @@
  .language-toggle {
            display: flex;
            top: 0;
+    }
+
+
+.back-btn { position: static; margin-left: 44px; flex-shrink: 0;
+  width: 44px; height: 44px; padding: 0; font-size: 1.8em; font-weight: bold;
+  background: #95a5a6; color: white; border-radius: 12px; border: none;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; }
+
+ .back-button img {width: 100%;height: 100%;object-fit: cover;display: block;}
+
+  .back-button:active {transform: scale(0.92);transition: transform 0.1s;}
+
+    .container {
+        max-width: 800px;
+        width: 100%;
+        position: relative;
+    }
+
+header {
+  display: flow-root;
+  text-align: center;
+  margin: 0 auto 30px;
+  max-width: 800px;
+  height: auto !important;
+}
+.main-title { margin: 0 auto; font-size: 0; height: auto !important; }
+.main-title img {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin: 0 auto 20px;
+  border-radius: 16px;
+  position: static !important;
+  float: none !important;
+}
+    .game-title {
+        text-align: center;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .game-subtitle {
+        text-align: center;
+        color: #b8e6e6;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    /* ── 한영 토글 ── */
+    .language-toggle {
+        display: flex;
+        top: 0;
+        margin-right: 10px;
+        
     }
 
     .language-btn {
@@ -128,49 +184,6 @@
     [data-lang="ko"] .lang-en { display: none; }
     [data-lang="en"] .lang-ko { display: none; }
 
- header {
-  text-align: center;
-  margin: 0 auto 30px;
-  max-width: 800px;
-}
-
-.main-title {
-    margin: 0 auto;
-    font-size: 0;
-}
-
-.main-title img {
-    display: block;
-    width: 100%;
-max-width: var(--content-width);
-    border-radius: 16px;
-  height: auto;
-  margin: 0 auto;
-margin-bottom: 20px;
-
-}
-  
-    .container {
-        max-width: 800px;
-        width: 100%;
-        position: relative;
-    }
-
-    .game-title {
-        text-align: center;
-        color: white;
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .game-subtitle {
-        text-align: center;
-        color: #b8e6e6;
-        font-size: 18px;
-        margin-bottom: 30px;
-    }
-   
     .start-screen {
         background: #2e8b8b;
         border-radius: 15px;
@@ -316,7 +329,14 @@ margin-bottom: 20px;
         padding: 0 10px;
         color: rgba(255,255,255,0.9);
         filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
-    }
+        width: 60px; text-align: center;                  
+    transition: margin-left 0.4s; 
+    width: 70px;
+    text-align: center;
+    margin-left: auto; 
+    transition: margin-left 0.4s;
+}
+
 
     .target-display {
         background: rgba(255,255,255,0.95);
@@ -490,7 +510,6 @@ margin-bottom: 20px;
         background: #95a5a6;
         color: white;
 border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;z-index: 100;}
-{
 
     .back-btn:hover { background: #7f8c8d; }
   
@@ -502,33 +521,22 @@ border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: 
     color: #2e8b8b;
     margin-top: 6px;
 }
+
 header { display: flow-root; height: auto !important; }
 .main-title { height: auto !important; }
 .main-title img { position: static !important; float: none !important; }
-
 
 </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body data-game-id="numtter" data-game-type="index">
-<link rel="stylesheet" href="toolbar.css">
-<div class="toolbar">
- <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
-  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
-</button>
-  <div class="language-toggle">
-        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한국어</button>
-        <button class="language-btn" id="btnEn" onclick="setLang('en')">English</button>
-    </div>
- </div> <!-- .toolbar -->
-<header>
-  <h1 class="main-title">
-        <img src="https://soosooland.com/numtter/banner3.jpeg" alt="넘털 NUMTTER">
-    </h1>
-  </header>
 
-  
-  
+
+
+
+
+
+
   <!-- 한영 토글 -->
     
 <div class="container">
@@ -537,6 +545,23 @@ header { display: flow-root; height: auto !important; }
   
     <!-- 시작 화면 -->
     <div class="start-screen" id="startScreen">
+<link rel="stylesheet" href="toolbar.css">
+<div class="toolbar">
+  <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
+  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
+</button>
+   <div class="language-toggle">
+        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한국어</button>
+        <button class="language-btn" id="btnEn" onclick="setLang('en')">English</button>
+    </div>
+</div> <!-- .toolbar -->
+
+<header>
+   <h1 class="main-title">
+        <img src="https://soosooland.com/numtter/banner3.jpeg" alt="넘털 NUMTTER">
+    </h1>
+</header>
+
 
         <div class="game-description">
             <h3>
@@ -619,8 +644,14 @@ header { display: flow-root; height: auto !important; }
 
     <!-- 게임 화면 -->
     <div class="game-screen" id="gameScreen">
-        <div class="top-bar">
+
+
+<link rel="stylesheet" href="toolbar.css">
+<div class="toolbar">
             <button class="back-btn" id="backBtn">←</button>
+</div> <!-- .toolbar -->
+
+        <div class="top-bar">
             <div class="moon-inline" id="moonInline">
                 <div class="moon-day" id="moonDisplay">🌙</div>
             </div>
@@ -689,7 +720,7 @@ header { display: flow-root; height: auto !important; }
 
 <script>
     // ── 한영 토글 ──────────────────────────────────
-    function setLang(lang) {
+     function setLang(lang) {
         document.documentElement.setAttribute('data-lang', lang);
         document.getElementById('btnKo').classList.toggle('active', lang === 'ko');
         document.getElementById('btnEn').classList.toggle('active', lang === 'en');
@@ -701,7 +732,6 @@ header { display: flow-root; height: auto !important; }
     setLang(saved);
 })();
 
-  
     // ── 언어별 텍스트 ──
     const T = {
         ko: {
@@ -854,6 +884,10 @@ beginPlay() {
             const moonDisplay = document.getElementById('moonDisplay');
             moonDisplay.textContent = this.getMoonEmoji(this.turnsPlayed + 1);
             moonDisplay.className = this.getMoonClass(this.turnsPlayed + 1);
+
+const progress = Math.min(this.turnsPlayed / (this.maxDay - 1), 1);
+document.getElementById('moonInline').style.marginLeft =
+    `calc((100% - 70px) * ${1 - progress})`;
 
             document.getElementById('targetNumber').textContent = this.currentDay;
             document.getElementById('targetNumberEng').textContent = this.currentDay;
