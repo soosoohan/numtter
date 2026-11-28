@@ -1041,24 +1041,25 @@ document.getElementById('moonInline').style.marginLeft =
             this.nextDay();
         }
 
-        nextDay() {
-            this.turnsPlayed++;
-            this.currentDay++;
+       nextDay() {
+    this.turnsPlayed++;
+    this.currentDay++;
 
-            if (this.turnsPlayed >= this.maxDay) {
-                this.gameOver(false, 'over30');
-                return;
-            }
-            if (this.cards.length <= 1) {
-                this.gameOver(true, null);
-                return;
-            }
+    // 카드를 다 털었으면 성공 (30턴째여도 성공)
+    if (this.cards.length <= 1) {
+        this.gameOver(true, null);
+        return;
+    }
+    // 30턴이 끝났는데 카드가 남아 있으면 실패
+    if (this.turnsPlayed >= this.maxDay) {
+        this.gameOver(false, 'over30');
+        return;
+    }
 
-            this.expressionTokens = [];
-            this.resetCardStates();
-            this.updateDisplay();
-        }
-
+    this.expressionTokens = [];
+    this.resetCardStates();
+    this.updateDisplay();
+}
         resetCardStates() {
             document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
         }
