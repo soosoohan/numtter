@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,131 +6,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Numtle - Number Hurdle Challenge | 수수랜드 Soosooland</title>
+<title>Numtter - Number UNO Solo Challenge | 수수랜드 Soosooland</title>
 <script>
   if (window.top !== window.self) {
     window.top.location = "https://soosooland.com";
   }
   console.log("© 2025-2026 Soosooland by 한수수. All rights reserved.");
   console.log("https://soosooland.com");
-  console.log("🎮 Numtle | Born: 2026-05-16");
+  console.log("🎮 Numtter | Born: 2025-08-04");
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-4YZHC1G9FN');
-</script>
-<meta name="description" content="Jump over number hurdles with math equations! Solo challenge with lives system.">
-<meta name="keywords" content="넘틀, 수수랜드, 수학 게임, numtle, math game, equation game, educational game">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4YZHC1G9FN');
+    </script>
+<meta name="description" content="Create equations from 1 upward. Discard cards by matching targets. Solo math puzzle.">
+<meta name="keywords" content="넘즐, 넘털, 수수랜드, 수학 게임, 연산 게임, 원카드, numtter, number uno, math uno game, card puzzle, solo puzzle, calculation game, educational game">
 <meta name="author" content="Soosooland">
-<meta property="og:title" content="Numtle - Number Hurdle Challenge">
-<meta property="og:description" content="Jump over number hurdles with math equations!">
+<meta property="og:title" content="Numtter - Number UNO Solo Challenge">
+<meta property="og:description" content="Create equations from 1 upward. Discard cards by matching targets.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://soosooland.com/numtle/">
+<meta property="og:url" content="https://soosooland.com/numtter/">
 <meta property="og:image" content="https://soosooland.com/images/numzzle.jpeg">
 <meta property="og:site_name" content="Soosooland">
 <meta name="twitter:card" content="summary">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:locale:alternate" content="en_US">
-<link rel="canonical" href="https://soosooland.com/numtle/">
-<link rel="alternate" hreflang="ko" href="https://soosooland.com/numtle/">
-<link rel="alternate" hreflang="en" href="https://soosooland.com/numtle/">
-<link rel="alternate" hreflang="x-default" href="https://soosooland.com/numtle/">
+<link rel="canonical" href="https://soosooland.com/numtter/">
+<link rel="alternate" hreflang="ko" href="https://soosooland.com/numtter/">
+<link rel="alternate" hreflang="en" href="https://soosooland.com/numtter/">
+<link rel="alternate" hreflang="x-default" href="https://soosooland.com/numtter/">
 <link rel="stylesheet" href="https://soosooland.com/css/protection.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "VideoGame",
-  "name": "Numtle",
-  "alternateName": "넘틀",
-  "description": "Jump over number hurdles with math equations!",
-  "url": "https://soosooland.com/numtle/",
-  "genre": ["Educational", "Puzzle"],
+  "name": "Numtter",
+  "alternateName": "넘털",
+  "description": "Create equations from 1 upward. Discard cards by matching targets.",
+  "url": "https://soosooland.com/numtter/",
+  "genre": ["Educational", "Card"],
   "gamePlatform": "Web browser",
   "playMode": "SinglePlayer",
   "inLanguage": ["en", "ko"]
 }
 </script>
 <script src="https://soosooland.com/js/protection.js"></script>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, query, where, orderBy, limit, getDocs }
-    from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-  
-  const firebaseConfig = {
-    apiKey: "AIzaSyBZj3byxktN9IlRoBb0NBSqeKIOHprYPAc",
-    authDomain: "numtle-9ea8a.firebaseapp.com",
-    databaseURL: "https://numtle-9ea8a-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "numtle-9ea8a",
-    storageBucket: "numtle-9ea8a.firebasestorage.app",
-    messagingSenderId: "1019599258272",
-    appId: "1:1019599258272:web:c8ce0c3a240f6d1b57ffc5",
-    measurementId: "G-BF5T8QHZGJ"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-function getOrCreateUserId() {
-  let uid = localStorage.getItem('numtle_uid');
-  if (!uid) {
-    const C = 'BCDFGHJKLMNPQRSTVWXZ'; // 모음 없음
-    const D = '0123456789';
-    const rc = () => C[Math.floor(Math.random() * C.length)];
-    const rd = () => D[Math.floor(Math.random() * D.length)];
-    // 자음2 + 숫자2 + 자음2 패턴
-    uid = rc() + rc() + rd() + rd() + rc() + rc();
-    localStorage.setItem('numtle_uid', uid);
-  }
-  return uid;
-}
-
-window.getOrCreateUserId = getOrCreateUserId; 
-  window.saveScore = async function(nickname, score, mode) {
-    try {
-      await addDoc(collection(db, "scores"), { nickname, score, mode, timestamp: new Date() });
-    } catch (e) {}
-  };
-
-  window.getRankings = async function(mode) {
-    try {
-      const q = query(collection(db, "scores"), where("mode", "==", mode),
-                      orderBy("score", "desc"), limit(10));
-      const snapshot = await getDocs(q);
-      return snapshot.docs.map(doc => doc.data());
-    } catch (e) { return []; }
-  };
-
-  window.getMyRank = async function(score, mode) {
-    try {
-      const q = query(collection(db, "scores"), where("mode", "==", mode),
-                      orderBy("score", "desc"));
-      const snapshot = await getDocs(q);
-      const scores = snapshot.docs.map(doc => doc.data());
-      const rank = scores.findIndex(s => s.score <= score) + 1;
-      return rank || scores.length + 1;
-    } catch (e) { return null; }
-  };
-</script>
-
 <style>
-:root {--content-width: 800px;}
- * {box-sizing: border-box;}
+    :root {--content-width: 800px;}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #145454;
-  margin: 0;
-  padding: 20px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    body {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #2e8b8b;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 .toolbar {
   margin: 0 auto;   
   padding: 6px 0;    
@@ -142,7 +80,6 @@ body {
   align-items: center;
   box-sizing: border-box;
   }
-
 .back-button {
   margin-left: 44px;
   flex-shrink: 0;
@@ -155,844 +92,1024 @@ body {
  .back-button img {width: 100%;height: 100%;object-fit: cover;display: block;}
 
   .back-button:active {transform: scale(0.92);transition: transform 0.1s;}
+ .language-toggle {
+           display: flex;
+           top: 0;
+    }
+
+
+.back-btn { position: static; margin-left: 44px; flex-shrink: 0;
+  width: 44px; height: 44px; padding: 0; font-size: 1.8em; font-weight: bold;
+  background: #95a5a6; color: white; border-radius: 12px; border: none;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; }
+
+ .back-button img {width: 100%;height: 100%;object-fit: cover;display: block;}
+
+  .back-button:active {transform: scale(0.92);transition: transform 0.1s;}
+
+    .container {
+        max-width: 800px;
+        width: 100%;
+        position: relative;
+    }
 
 header {
+  display: flow-root;
   text-align: center;
   margin: 0 auto 30px;
   max-width: 800px;
-    display: flex;
-    justify-content: center;    
-    position: relative;
-    text-align: center;
+  height: auto !important;
 }
-
-.container { max-width: 700px; width: 100%; position: relative; }
-
-.game-title {
-  text-align: center;
-  color: white;
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* ── 한영 토글 ── */
-.language-toggle {
-  display: flex;
-  margin-right: 5px;
-}
-
-.language-btn {
-  background: rgba(255,255,255,0.3);
-  color: #ffffff;
-  border: 2px solid rgba(255,255,255,0.6);
-  padding: 10px;
-  margin: 3px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  font-weight: 600;
-}
-
-.language-btn.active {
-  background: rgba(255,255,255,0.95);
-  color: #1a6b3a;
-  border-color: rgba(255,255,255,1);
-  box-shadow: 0 4px 12px rgba(255,255,255,0.3);
-}
-
-.language-btn:hover {
-  background: rgba(255,255,255,0.4);
-  transform: translateY(-2px);
-}
-
-.main-title {
-    margin: 0 auto 0;
-    font-size: 0;
-margin-bottom: 30px;
-}
-
+.main-title { margin: 0 auto; font-size: 0; height: auto !important; }
 .main-title img {
   display: block;
   width: 100%;
-  max-width: var(--content-width);
-  height: auto;
-  margin: 0 auto;
-    border-radius: 16px;
-}
-
-/* ── 언어 표시 제어 ── */
-[data-lang="ko"] .lang-en { display: none; }
-[data-lang="en"] .lang-ko { display: none; }
-
-/* ── 시작 화면 ── */
-.start-screen {
-  background: #145454;
-  border-radius: 15px;
-  padding: 0;
-  text-align: center;
-  margin-top:50px;
-}
-
-.game-description {
-  background: #e0f7ec;
-  color: #1a6b3a;
-  font-size: 18px;
-  line-height: 1.7;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 24px;
-}
-
-.mode-selection { border-radius: 12px; background: #2e8b8b; margin: 30px 0 30px ; padding:25px;
-  }
-
-
-
-.mode-selection h3 { color: white; margin-bottom: 16px; font-size: 20px; }
-
-.mode-options { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-.mode-btn {
-  background: white;
-  border: 4px solid #white;
-  color: #145454;
-  padding: 10px;
-  border-radius: 12px;
-  font-size: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-  min-width: 160px;
-}
-
-.mode-btn:hover, .mode-btn.selected { background: #1a6b3a; color: white; }
-
-.start-btn {
-  background: #2e8b8b;
-  color: white;
-  border: 4px solid #white;
-  padding: 15px 40px;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background 0.2s;
-}
-
-.start-btn:hover { background: #2e8b8b; }
-.start-btn:disabled { background: orange; cursor: not-allowed; }
-
-/* ── 게임 화면 ── */
-.game-screen { display: none; margin-top: 50px;}
-
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  width:100%
   max-width: 800px;
+  height: auto;
+  margin: 0 auto 20px;
+  border-radius: 16px;
+  position: static !important;
+  float: none !important;
+}
+    .game-title {
+        text-align: center;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .game-subtitle {
+        text-align: center;
+        color: #b8e6e6;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    /* ── 한영 토글 ── */
+    .language-toggle {
+        display: flex;
+        top: 0;
+        margin-right: 10px;
+        
+    }
+
+    .language-btn {
+        background: rgba(255,255,255,0.3);
+        color: #ffffff;
+        border: 2px solid rgba(255,255,255,0.6);
+        padding: 10px;
+        margin: 0 3px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .language-btn.active {
+        background: rgba(255,255,255,0.95);
+        color: #2c5f2d;
+        border-color: rgba(255,255,255,1);
+        box-shadow: 0 4px 12px rgba(255,255,255,0.3);
+    }
+
+    .language-btn:hover {
+        background: rgba(255,255,255,0.4);
+        transform: translateY(-2px);
+    }
+
+    /* ── 언어 표시 제어 ── */
+    [data-lang="ko"] .lang-en { display: none; }
+    [data-lang="en"] .lang-ko { display: none; }
+
+    .start-screen {
+        background: #2e8b8b;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .game-description {
+        background: #e0f7f7;
+        color: #2e8b8b;
+        font-size: 16px;
+        line-height: 1.6;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .operator-selection { margin: 0 auto; }
+
+    .operator-selection h3 { color: white; margin-bottom: 20px; }
+
+    .operator-options {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .operator-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+    }
+
+    .operator-option:hover { background-color: #f0f8f8; }
+
+    .operator-option input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .difficulty-section {
+        background: #e0f7f7;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        color: #2e8b8b;
+    }
+
+    .difficulty-section h3 { color: #2e8b8b; margin-bottom: 16px; }
+
+    .difficulty-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+    }
+
+    .difficulty-row label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2e8b8b;
+    }
+
+    .difficulty-row input[type="number"] {
+        width: 90px;
+        padding: 6px 10px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid #2e8b8b;
+        border-radius: 8px;
+        text-align: center;
+        color: #2e8b8b;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #2e8b8b;
+        cursor: pointer;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+    }
+
+    .radio-option:hover { background-color: #c0eeee; }
+
+    .radio-option input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: #2e8b8b;
+    }
+
+    .start-btn {
+        background: #145454;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 20px;
+    }
+
+    .start-btn:hover { background: #267070; }
+    .start-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    .game-screen { display: none; }
+
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .moon-inline {
+        font-size: 40px;
+        padding: 0 10px;
+        color: rgba(255,255,255,0.9);
+        filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
+        width: 60px; text-align: center;                  
+    transition: margin-left 0.4s; 
+    width: 70px;
+    text-align: center;
+    margin-left: auto; 
+    transition: margin-left 0.4s;
 }
 
-.back-btn { 
-  margin-left: 22px; 
-  padding: 0; 
-  font-size: 1.8em; 
-  font-weight: bold; 
-  background: white;
-  color: #145454;
-  border-radius: 12px; 
-  border: none; 
-  cursor: pointer; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  transition: all 0.3s ease;z-index: 100;
-  position: static; margin-left: 44px; flex-shrink: 0;
-  width: 44px; 
-  height: 44px; 
-  z-index: 100; 
+
+    .target-display {
+        background: rgba(255,255,255,0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .moon-day { font-size: 48px; margin-bottom: 10px; }
+
+    .target-number {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2e8b8b;
+    }
+
+    .operators-section {
+        background: rgba(255,255,255,0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2e8b8b;
+        margin-bottom: 15px;
+    }
+
+    .operators {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .operator {
+        background: #2e8b8b;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .operator:hover { background: #267070; }
+
+    .cards-section {
+        background: rgba(255,255,255,0.95);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        width: 60px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .card:hover { border-color: #2e8b8b; background: #f0f8f8; }
+
+    .card.selected {
+        border-color: #95a5a6;
+        background: #95a5a6;
+        color: #7f8c8d;
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .card.selected:hover { border-color: #95a5a6; background: #95a5a6; }
+
+    .expression-display {
+        background: #f8f8f8;
+        border-radius: 8px;
+        padding: 8px;
+        margin: 10px 0;
+        text-align: center;
+        font-size: 1.2em;
+        color: #333;
+        min-height: 40px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-submit { background: #2e8b8b; color: white; }
+    .btn-submit:hover { background: #267070; }
+    .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+
+    .btn-skip { background: #ff6b6b; color: white; }
+    .btn-skip:hover { background: #e55555; }
+
+    .btn-reset { background: #95a5a6; color: white; }
+    .btn-reset:hover { background: #7f8c8d; }
+
+    .status {
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .game-over {
+        background: rgba(0,0,0,0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .game-over-content {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 400px;
+    }
+
+    .waning-crescent { transform: scaleX(-1); }
+
+    .back-btn { position: fixed; 
+        margin-left: 10px; width: 44px; height: 44px; padding: 0; font-size: 1.8em; font-weight: bold; 
+        background: #95a5a6;
+        color: white;
+    border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;z-index: 100;}
+
+    .back-btn:hover { background: #7f8c8d; }
+  
+    .credits { text-align: center; margin-top: 20px; color: rgba(255,255,255,0.7); }
+    
+    .skip-hint {
+    text-align: center;
+    font-size: 1.0rem;
+    color: #2e8b8b;
+    margin-top: 6px;
 }
-
-.lives-display { font-size: 28px; letter-spacing: 4px;            display: block;
-  width: 100%;
-  text-align: center;
-}
-
-.target-display {
-  background: rgba(255,255,255,0.95);
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 16px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.target-number { font-size: 28px; font-weight: bold; color: #1a6b3a; }
-.target-sub { font-size: 14px; color: #666; margin-top: 4px; }
-
-.operators-section {
-  background: rgba(255,255,255,0.95);
-  border-radius: 15px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.section-title { font-size: 14px; font-weight: bold; color: #1a6b3a;  }
-
-.operators { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-
-.operator {
-  background: #1a6b3a;
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.operator:hover { background: #145530; }
-
-.cards-section {
-  background: rgba(255,255,255,0.95);
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 16px;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 14px;
-}
-
-.card {
-  background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  width: 60px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.card:hover { border-color: #1a6b3a; background: #f0fff4; }
-
-.card.selected {
-  border-color: #95a5a6;
-  background: #95a5a6;
-  color: #7f8c8d;
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.card.selected:hover { border-color: #95a5a6; background: #95a5a6; }
-
-.expression-display {
-  background: #f8f8f8;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px 0;
-  text-align: center;
-  font-size: 1.2em;
-  color: #333;
-  min-height: 42px;
-}
-
-.buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-
-.btn {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-submit { background: #1a6b3a; color: white; }
-.btn-submit:hover { background: #145530; }
-.btn-submit:disabled { background: #ccc; cursor: not-allowed; }
-.btn-skip { background: #ff6b6b; color: white; }
-.btn-skip:hover { background: #e55555; }
-.btn-reset { background: #95a5a6; color: white; }
-.btn-reset:hover { background: #7f8c8d; }
-
-/* ── 게임오버 오버레이 ── */
-.game-over {
-  background: rgba(0,0,0,0.8);
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.game-over-content {
-  background: white;
-  padding: 36px;
-  border-radius: 20px;
-  text-align: center;
-  max-width: 420px;
-  width: 90%;
-}
-
-.game-over-content h2 { font-size: 26px; margin-bottom: 10px; }
-.game-over-content p { color: #555; margin-bottom: 16px; }
-
-.score-display {
-  font-size: 48px;
-  font-weight: bold;
-  color: #1a6b3a;
-  margin: 10px 0;
-}
-
-.rank-display {
-  font-size: 20px;
-  color: #e67e22;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
-
-.nickname-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  border: 2px solid #1a6b3a;
-  border-radius: 10px;
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-.rankings-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 16px 0;
-  font-size: 14px;
-}
-
-.rankings-table th { background: #1a6b3a; color: white; padding: 8px; }
-.rankings-table td { padding: 8px; border-bottom: 1px solid #eee; }
-.rankings-table tr.my-rank td { background: #e0f7ec; font-weight: bold; }
-
-.credits { color: rgba(255,255,255,0.6); text-align: center; margin-top: 20px; font-size: 13px; }
-
-.save-btn {
-  background: rgba(255,255,255,0.25);
-  color: white;
-  border: 2px solid rgba(255,255,255,0.6);
-  padding: 8px 14px;
-  font-size: 13px;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.save-btn:hover { background: rgba(255,255,255,0.4); }
-
-.save-feedback {
-  color: #a8f0c0;
-  font-size: 13px;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s;
-  margin-left: 6px;
-}
-
-.save-feedback.show { opacity: 1; }
-
-.continue-btn {
-  background: #e67e22;
-  color: white;
-  border: none;
-  padding: 15px 40px;
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.continue-btn:hover { background: #ca6f1e; }
 
 header { display: flow-root; height: auto !important; }
 .main-title { height: auto !important; }
 .main-title img { position: static !important; float: none !important; }
 
 </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body data-game-id="numtle" data-game-type="index" onload="initLanguage()">
-  
+<body data-game-id="numtter" data-game-type="index">
+
+
+
+
+
+
+
+  <!-- 한영 토글 -->
+    
 <div class="container">
-
-
-  <div class="start-screen" id="startScreen">
-
+ 
+  <div class="game-subtitle"></div>
+  
+    <!-- 시작 화면 -->
+    <div class="start-screen" id="startScreen">
 <link rel="stylesheet" href="toolbar.css">
 <div class="toolbar">
   <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
   <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈">
 </button>
-<div class="language-toggle">
-    <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한국어</button>
-    <button class="language-btn" id="btnEn" onclick="setLang('en')">English</button>
-</div>
+   <div class="language-toggle">
+        <button class="language-btn active" id="btnKo" onclick="setLang('ko')">한국어</button>
+        <button class="language-btn" id="btnEn" onclick="setLang('en')">English</button>
+    </div>
 </div> <!-- .toolbar -->
+
 <header>
    <h1 class="main-title">
-        <img src="https://soosooland.com/numtle/banner.jpeg" alt="NUMTLE 넘틀">
+        <img src="https://soosooland.com/numtter/banner3.jpeg" alt="넘털 NUMTTER">
     </h1>
 </header>
 
-    <div class="game-description">
-      <strong class="lang-ko">뜀틀처럼 한 칸씩 높이 뛰어라!</strong>
-      <strong class="lang-en">Jump over number hurdles one by one!</strong><br>
-      <span class="lang-ko">
-        숫자카드로 수식을 만들어 목표숫자를 클리어하세요.<br>
-        목표숫자는 1부터 매턴 1씩 올라가며 끝이 없습니다.<br>
-        카드는 사용한 만큼 자동으로 보충됩니다.<br>
-        패스하면 생명 1개를 잃습니다. 생명은 5개.<br>
-        수식 결과는 자연수만 인정됩니다.
-      </span>
-      <span class="lang-en">
-        Create equations with your cards to clear the target number.<br>
-        Target increases by 1 each turn — no end!<br>
-        Used cards are automatically replenished.<br>
-        Pass = lose 1 life. You have 5 lives.<br>
-        Results must be natural numbers only.
-      </span>
-    </div>
 
-    <div class="mode-selection">
-      <h3>
-        <span class="lang-ko">모드 선택</span>
-        <span class="lang-en">Select Mode</span>
-      </h3>
-      <div class="mode-options">
-        <button class="mode-btn selected" id="modeBtn1" onclick="selectMode(1)">+  −</button>
-        <button class="mode-btn" id="modeBtn2" onclick="selectMode(2)">+ − × ÷</button>
-     
-<button class="start-btn" id="startBtn" style="margin-top:0">
-    <span class="lang-ko">게임 시작</span>
-    <span class="lang-en">Start Game</span>
-  </button>
+        <div class="game-description">
+            <h3>
+                <span class="lang-ko">원카드의 재미에 연산학습 효과까지!</span>
+                <span class="lang-en">The fun of Uno with math learning benefits!</span>
+            </h3>
+            <span class="lang-ko">
+                연산기호를 선택하고, 카드로 매턴 목표숫자를 만드세요.<br>
+                목표숫자는 매턴마다 1씩 늘어나며 30턴에서 끝납니다.<br>
+                실패하면 카드가 추가됩니다. 두 자리 숫자 조합도 가능.<br>
+                카드를 1장 이하로 줄이면 성공!
+            </span>
+            <span class="lang-en">
+                Choose operators and create equations to match the target number each turn.<br>
+                The target number increases by 1 each turn and the game ends after 30 turns.<br>
+                Fail to match? Cards are added. Two-digit combinations allowed.<br>
+                Clear down to 1 card or fewer to win!
+            </span>
+        </div>
 
-</div>
-  </div>
+        <div class="operator-selection">
+            <h3>
+                <span class="lang-ko">사용할 연산기호를 선택하세요:</span>
+                <span class="lang-en">Select operators to use:</span>
+            </h3>
+            <div class="operator-options">
+                <label class="operator-option"><input type="checkbox" value="+" checked> +</label>
+                <label class="operator-option"><input type="checkbox" value="-"> -</label>
+                <label class="operator-option"><input type="checkbox" value="×"> ×</label>
+                <label class="operator-option"><input type="checkbox" value="÷"> ÷</label>
+                <label class="operator-option"><input type="checkbox" value="()"> ()</label>
+     </div>
+        </div>
 
-  </div>
+        <div class="difficulty-section">
+            <h3>
+                <span class="lang-ko">난이도 설정</span>
+                <span class="lang-en">Difficulty Settings</span>
+            </h3>
+            <div class="difficulty-row">
+                <label for="startNumber">
+                    <span class="lang-ko">시작 숫자 (1–99):</span>
+                    <span class="lang-en">Start number (1–99):</span>
+                </label>
+                <input type="number" id="startNumber" min="1" max="99" value="1"
+                       onblur="this.value = Math.min(99, Math.max(1, parseInt(this.value)||1))">
+            </div>
+            <div class="difficulty-row">
+                <label>
+                    <span class="lang-ko">실패 시 카드 추가:</span>
+                    <span class="lang-en">Cards added on skip:</span>
+                </label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="penaltyCards" value="1" checked>
+                        <span class="lang-ko">1장</span><span class="lang-en">1 card</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="penaltyCards" value="2">
+                        <span class="lang-ko">2장</span><span class="lang-en">2 cards</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="penaltyCards" value="3">
+                        <span class="lang-ko">3장</span><span class="lang-en">3 cards</span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
-  <!-- 게임 화면 -->
-  <div class="game-screen" id="gameScreen">
-<div class="top-bar">
-  
-
-
-<button class="back-btn" id="backBtn">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</button>
-
-
-
-  <div class="lives-display" id="livesDisplay">❤️❤️❤️❤️❤️</div>
-</div>
-
-    <div class="target-display">
-      <div class="target-number">
-        <span class="lang-ko">목표: <span id="targetNumber">1</span></span>
-        <span class="lang-en">Target: <span id="targetNumberEng">1</span></span>
-      </div>
-    </div>
-
-    <div class="operators-section">
-      <div class="section-title">
-        <span class="lang-ko">연산기호</span>
-        <span class="lang-en">Operators</span>
-      </div>
-      <div class="operators" id="operators"></div>
-    </div>
-
-    <div class="cards-section">
-      <div class="section-title">
-        <span class="lang-ko">내 카드 (<span id="cardCount">5</span>장)</span>
-        <span class="lang-en">My Cards (<span id="cardCountEng">5</span>)</span>
-      </div>
-      <div class="cards" id="cards"></div>
-      <div class="expression-display" id="expression"></div>
-      <div class="buttons">
-        <button class="btn btn-submit" id="submitBtn" disabled>
-          ✓ <span class="lang-ko">제출</span><span class="lang-en">Submit</span>
+        <button class="start-btn" id="startBtn">
+            <span class="lang-ko">게임 시작</span>
+            <span class="lang-en">Start Game</span>
         </button>
-        <button class="btn btn-skip" id="skipBtn">
-          ❌ <span class="lang-ko">패스</span><span class="lang-en">Pass</span>
+        <button class="start-btn" id="randomBtn" style="background:#ff9f43; margin-left:8px;">
+            <span class="lang-ko">🎲 랜덤 시작</span>
+            <span class="lang-en">🎲 Random Start</span>
         </button>
-        <button class="btn btn-reset" id="clearBtn">
-          🗑️ <span class="lang-ko">지우기</span><span class="lang-en">Clear</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- 게임오버 -->
-<div class="game-over" id="gameOver">
-  <div class="game-over-content">
-    <h2>🕯️<span class="lang-ko">게임오버</span><span class="lang-en">Game Over</span></h2>
-    <p><span class="lang-ko">최종 점수</span><span class="lang-en">Final Score</span></p>
-    <div class="score-display" id="finalScore">0</div>
-    <div class="rank-display" id="rankDisplay"></div>
-
-    <div id="nicknameSection">
-      <input class="nickname-input" id="nicknameInput" type="text" maxlength="12"
-             placeholder="닉네임 입력 / Enter nickname">
-      <button class="btn btn-submit" style="width:100%; margin-bottom:10px"
-              onclick="submitScore()">
-        <span class="lang-ko">기록 등록</span><span class="lang-en">Save Score</span>
-      </button>
     </div>
 
-    <div id="rankingsSection" style="display:none">
-      <table class="rankings-table" id="rankingsTable">
-        <thead>
-          <tr>
-            <th><span class="lang-ko">순위</span><span class="lang-en">Rank</span></th>
-            <th><span class="lang-ko">닉네임</span><span class="lang-en">Nickname</span></th>
-            <th><span class="lang-ko">점수</span><span class="lang-en">Score</span></th>
-          </tr>
-        </thead>
-        <tbody id="rankingsBody"></tbody>
-      </table>
-    </div>
+    <!-- 게임 화면 -->
+    <div class="game-screen" id="gameScreen">
 
-    <button class="btn btn-submit" style="margin-top:10px; width:100%"
-            onclick="location.reload()">
-      <span class="lang-ko">다시 시작</span><span class="lang-en">Restart</span>
+
+<link rel="stylesheet" href="toolbar.css">
+<div class="toolbar">
+            <button class="back-btn" id="backBtn">←</button>
+</div> <!-- .toolbar -->
+
+        <div class="top-bar">
+            <div class="moon-inline" id="moonInline">
+                <div class="moon-day" id="moonDisplay">🌙</div>
+            </div>
+        </div>
+
+        <div class="target-display">
+            <div class="target-number">
+                <span class="lang-ko">목표 숫자: <span id="targetNumber">1</span></span>
+                <span class="lang-en">Target number: <span id="targetNumberEng">1</span></span>
+            </div>
+        </div>
+
+        <div class="operators-section">
+            <div class="section-title">
+                <span class="lang-ko">사용 가능한 연산기호</span>
+                <span class="lang-en">Available Operators</span>
+            </div>
+            <div class="operators" id="operators"></div>
+        </div>
+
+        <div class="cards-section">
+            <div class="section-title">
+                <span class="lang-ko">내 카드들 (<span id="cardCount">1</span>장)</span>
+                <span class="lang-en">Your Cards (<span id="cardCountEng">1</span> cards)</span>
+            </div>
+            <div class="cards" id="cards"></div>
+            <div class="expression-display" id="expression"></div>
+
+<div class="buttons">
+    <button class="btn btn-submit" id="submitBtn" disabled>
+        ✓ <span class="lang-ko">제출</span><span class="lang-en">Submit</span>
     </button>
-  </div>
+    <button class="btn btn-skip" id="skipBtn">
+        ➤ <span class="lang-ko">건너뛰기</span><span class="lang-en">Skip</span>
+    </button>
+    <button class="btn btn-reset" id="clearBtn">
+        🗑️ <span class="lang-ko">수식 지우기</span><span class="lang-en">Clear</span>
+    </button>
 </div>
 
-<div class="credits"><p>© 2026 Soosoo Han. All rights reserved.</p></div>
+<!-- 건너뛰기 안내 추가 -->
+<div class="skip-hint">
+    <span class="lang-ko">목표 숫자를 만들면 제출, 카드가 안 되면 건너뛰기!</span>
+    <span class="lang-en">Made it? Submit! Cards won’t work? Skip!</span>
+</div>
+
+<div class="status" id="status"></div>
+        </div>
+        <div class="status" id="status"></div>
+    </div>
+</div>
+
+<div class="game-over" id="gameOver">
+    <div class="game-over-content">
+        <h2 id="gameOverTitle"></h2>
+        <p id="gameOverMessage"></p>
+        <button class="btn btn-submit" onclick="location.reload()">
+            <span class="lang-ko">다시 시작</span><span class="lang-en">Restart</span>
+        </button>
+    </div>
+</div>
+
+<div class="credits">
+    <p>© 2025 Soosoo Han. All rights reserved.</p>
+</div>
 
 <script>
-  // ── 한영 토글 ──────────────────────────────────
-  function setLang(lang) {
-    document.documentElement.setAttribute('data-lang', lang);
-    document.getElementById('btnKo').classList.toggle('active', lang === 'ko');
-    document.getElementById('btnEn').classList.toggle('active', lang === 'en');
-    localStorage.setItem('soosoo-lang', lang);
-  }
-
-  (function () {
-   const saved = localStorage.getItem('soosoo-lang') || (navigator.language.startsWith('ko') ? 'ko' : 'en');
+    // ── 한영 토글 ──────────────────────────────────
+     function setLang(lang) {
+        document.documentElement.setAttribute('data-lang', lang);
+        document.getElementById('btnKo').classList.toggle('active', lang === 'ko');
+        document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+        localStorage.setItem('soosoo-lang', lang);
+    }
+(function () {
+    const saved = localStorage.getItem('soosoo-lang')
+        || (navigator.language.startsWith('ko') ? 'ko' : 'en');
     setLang(saved);
-  })();
+})();
 
-  function initLanguage() {
-  const saved = localStorage.getItem('soosoo-lang');
-  if (saved) {
-    toggleLanguage(saved); // 저장된 값 우선
-  } else {
-    const lang = navigator.language.startsWith('ko') ? 'ko' : 'en';
-    toggleLanguage(lang); // 브라우저 언어 감지
-  }
-}
-  // ── 언어별 텍스트 ──
-  const T = {
-    ko: {
-      notNatural:  '자연수 아님',
-      nickAlert:   '닉네임을 입력해주세요!',
-      rankMsg:     (r) => `🏆 현재 ${r}등`,
-    },
-    en: {
-      notNatural:  'Not a natural number',
-      nickAlert:   'Please enter a nickname!',
-      rankMsg:     (r) => `🏆 You are ranked #${r}`,
-    }
-  };
-
-  function t(key, ...args) {
-    const lang = document.documentElement.getAttribute('data-lang') || 'ko';
-    const val = T[lang][key];
-    return typeof val === 'function' ? val(...args) : val;
-  }
-
-  let selectedMode = 1;
-
-  function selectMode(mode) {
-    selectedMode = mode;
-    document.getElementById('modeBtn1').classList.toggle('selected', mode === 1);
-    document.getElementById('modeBtn2').classList.toggle('selected', mode === 2);
-  }
-
-  class NumtleGame {
-    constructor() {
-      this.currentTarget = 1;
-      this.lives = 5;
-      this.cards = [];
-      this.expressionTokens = [];
-      this.lastCleared = 0;
-      this.mode = selectedMode;
-      this.operators = this.mode === 1 ? ['+', '-'] : ['+', '-', '×', '÷'];
-      this.hasParentheses = false;
-      this.maxCards = 20;
-      this.bindEvents();
-    }
-
-    bindEvents() {
-      document.getElementById('backBtn').onclick = () => this.backToStart();
-      document.getElementById('submitBtn').onclick = () => this.submit();
-      document.getElementById('skipBtn').onclick = () => this.pass();
-      document.getElementById('clearBtn').onclick = () => this.clearExpression();
-    }
-
-    start() {
-      this.cards = Array.from({length: 5}, () => this.randomCard());
-      this.expressionTokens = [];
-      document.getElementById('startScreen').style.display = 'none';
-      document.getElementById('gameScreen').style.display = 'block';
-      this.updateDisplay();
-    }
-
-backToStart() {
-  selectMode(this.mode);  // ← 추가
-  document.getElementById('gameScreen').style.display = 'none';
-  document.getElementById('startScreen').style.display = 'block';
-}
-
-    randomCard() { return Math.floor(Math.random() * 10) + 1; }
-
-    updateLives() {
-      const hearts = '❤️'.repeat(this.lives) + '🖤'.repeat(5 - this.lives);
-      document.getElementById('livesDisplay').textContent = hearts;
-    }
-
-    updateDisplay() {
-      document.getElementById('targetNumber').textContent = this.currentTarget;
-      document.getElementById('targetNumberEng').textContent = this.currentTarget;
-      document.getElementById('cardCount').textContent = this.cards.length;
-      document.getElementById('cardCountEng').textContent = this.cards.length;
-      this.updateLives();
-      this.updateOperators();
-      this.updateCards();
-      this.updateExpression();
-    }
-
-    updateOperators() {
-      const div = document.getElementById('operators');
-      div.innerHTML = '';
-      this.operators.forEach((op, i) => {
-        const el = document.createElement('div');
-        el.className = 'operator';
-        el.textContent = op;
-        el.onclick = () => this.selectOperator(i);
-        div.appendChild(el);
-      });
-      if (this.hasParentheses) {
-        ['(', ')'].forEach(p => {
-          const el = document.createElement('div');
-          el.className = 'operator';
-          el.textContent = p;
-          el.onclick = () => {
-            this.expressionTokens.push({type: 'parenthesis', value: p});
-            this.updateExpression();
-          };
-          div.appendChild(el);
-        });
-      }
-    }
-
-    updateCards() {
-      const div = document.getElementById('cards');
-      div.innerHTML = '';
-      this.cards.forEach((card, i) => {
-        const el = document.createElement('div');
-        el.className = 'card';
-        el.textContent = card;
-        el.onclick = () => this.selectCard(i);
-        div.appendChild(el);
-      });
-    }
-
-    selectCard(index) {
-      if (this.expressionTokens.some(t => t.type === 'number' && t.cardIndex === index)) return;
-      this.expressionTokens.push({type: 'number', value: this.cards[index], cardIndex: index});
-      document.querySelectorAll('.card')[index].classList.add('selected');
-      this.updateExpression();
-    }
-
-    selectOperator(index) {
-      this.expressionTokens.push({type: 'operator', value: this.operators[index]});
-      this.updateExpression();
-    }
-
-    updateExpression() {
-      const div = document.getElementById('expression');
-      const btn = document.getElementById('submitBtn');
-
-      if (this.expressionTokens.length === 0) {
-        div.textContent = '';
-        btn.disabled = true;
-        return;
-      }
-
-      let expr = this.expressionTokens.map(tok => tok.value).join(' ');
-
-      if (this.isValidExpression()) {
-        const result = this.calculateExpression();
-        if (result !== null && Number.isInteger(result) && result > 0) {
-          expr += ` = ${result}`;
-          btn.disabled = (result !== this.currentTarget);
-        } else {
-          expr += result !== null ? ` = ${result} (${t('notNatural')})` : '';
-          btn.disabled = true;
+    // ── 언어별 텍스트 ──
+    const T = {
+        ko: {
+            selectOp:    '최소 하나의 연산기호를 선택해주세요!',
+            badStart:    '시작 숫자는 1~99 사이로 입력해주세요!',
+            notInteger:  '정수가 아님',
+            makeExpr:    '올바른 수식을 만드세요',
+            invalidExpr: '잘못된 수식입니다',
+            tooManyCards:'카드가 너무 많아져서 패배했습니다!',
+            over30:      '30턴이 지나서 실패했습니다!',
+            successTitle:'🎉 성공!',
+            failTitle:   '😢 실패',
+        },
+        en: {
+            selectOp:    'Please select at least one operator!',
+            badStart:    'Enter a start number between 1 and 99!',
+            notInteger:  'Not an integer',
+            makeExpr:    'Create a valid expression',
+            invalidExpr: 'Invalid expression',
+            tooManyCards:'Game Over! You have too many cards!',
+            over30:      'You failed after 30 turns!',
+            successTitle:'🎉 Success!',
+            failTitle:   '😢 Game Over',
         }
-      } else {
-        btn.disabled = true;
-      }
+    };
 
-      div.textContent = expr;
+    function t(key) {
+        const lang = document.documentElement.getAttribute('data-lang') || 'ko';
+        return T[lang][key];
     }
 
-    isValidExpression() {
-      if (this.expressionTokens.length === 0) return false;
-      let open = 0;
-      for (let tok of this.expressionTokens) {
-        if (tok.type === 'parenthesis') {
-          if (tok.value === '(') open++;
-          else { open--; if (open < 0) return false; }
+    class NumtterGame {
+        constructor() {
+            this.currentDay = 1;
+            this.startDay = 1;
+            this.maxDay = 30;
+            this.penaltyCards = 1;
+            this.cards = [];
+            this.operators = [];
+            this.expressionTokens = [];
+            this.maxCards = 20;
+
+            this.bindStartEvents();
         }
-      }
-      if (open !== 0) return false;
-      const first = this.expressionTokens[0];
-      const last = this.expressionTokens[this.expressionTokens.length - 1];
-      return (first.type === 'number' || first.value === '(') &&
-             (last.type === 'number' || last.value === ')');
-    }
 
-    calculateExpression() {
-      try {
-        let str = this.expressionTokens.map(tok => tok.value).join('');
-        str = str.replace(/×/g, '*').replace(/÷/g, '/');
-        if (!/^[0-9+\-*/().\s]+$/.test(str)) return null;
-        const result = new Function('return (' + str + ')')();
-        return isFinite(result) ? result : null;
-      } catch { return null; }
-    }
+        bindStartEvents() {
+            document.getElementById('startBtn').onclick = () => this.startGame();
+            document.getElementById('randomBtn').onclick = () => this.startRandomGame();
+            document.getElementById('backBtn').onclick = () => this.backToStart();
 
-    submit() {
-      const usedIndices = this.expressionTokens
-        .filter(tok => tok.type === 'number')
-        .map(tok => tok.cardIndex)
-        .sort((a, b) => b - a);
+            const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => this.updateStartButton());
+            });
+        }
 
-      usedIndices.forEach(i => this.cards.splice(i, 1));
-      usedIndices.forEach(() => this.cards.push(this.randomCard()));
+        updateStartButton() {
+            const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
+            const hasChecked = Array.from(checkboxes).some(cb => cb.checked);
+            document.getElementById('startBtn').disabled = !hasChecked;
+        }
 
-      this.lastCleared = this.currentTarget;
-      this.currentTarget++;
-      this.expressionTokens = [];
-      this.resetCardStates();
-      this.updateDisplay();
-    }
+        startGame() {
+    const checkboxes = document.querySelectorAll('.operator-option input[type="checkbox"]');
+    this.operators = [];
+    this.hasParentheses = false;
 
-    pass() {
-      this.lives--;
-      this.updateLives();
-
-      if (this.lives <= 0) {
-        this.gameOver();
-        return;
-      }
-
-      this.currentTarget++;
-      this.expressionTokens = [];
-      this.resetCardStates();
-      this.updateDisplay();
-    }
-
-    resetCardStates() {
-      document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
-    }
-
-clearExpression() {
-  this.expressionTokens = [];
-  this.resetCardStates();
-  this.updateExpression();
-}
-
-gameOver() {
-  document.getElementById('finalScore').textContent = this.lastCleared;
-  document.getElementById('gameOver').style.display = 'flex';
-  document.getElementById('nicknameInput').value = window.getOrCreateUserId();
-  if (this.lastCleared === 0) {
-    document.getElementById('nicknameSection').style.display = 'none';
-  }
-  window.currentGame = this;
-  }
-
-  }
-
-document.getElementById('startBtn').onclick = () => {
-  const game = new NumtleGame();
-  window.currentGame = game;
-  game.start();
-};
-
-window.submitScore = async function() {
-const nickname = document.getElementById('nicknameInput').value.trim() || getOrCreateUserId();
-
-
-
-  // 버튼 즉시 비활성화 ← 추가
-  const saveBtn = document.querySelector('#nicknameSection .btn-submit');
-  saveBtn.disabled = true;
-
-  const score = window.currentGame.lastCleared;
-  const mode = window.currentGame.mode === 1 ? '+-' : '+-×÷';
-
-
-    await window.saveScore(nickname, score, mode);
-
-    const rank = await window.getMyRank(score, mode);
-    if (rank) {
-      document.getElementById('rankDisplay').textContent = t('rankMsg', rank);
-    }
-
-    const rankings = await window.getRankings(mode);
-    const tbody = document.getElementById('rankingsBody');
-    tbody.innerHTML = '';
-    rankings.forEach((r, i) => {
-      const tr = document.createElement('tr');
-      if (r.score === score && r.nickname === nickname) tr.className = 'my-rank';
-      tr.innerHTML = `<td>${i + 1}</td><td>${r.nickname}</td><td>${r.score}</td>`;
-      tbody.appendChild(tr);
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            if (checkbox.value === '()') this.hasParentheses = true;
+            else this.operators.push(checkbox.value);
+        }
     });
 
-    document.getElementById('rankingsSection').style.display = 'block';
-  };
+    if (this.operators.length === 0 && !this.hasParentheses) {
+        alert(t('selectOp'));
+        return;
+    }
+
+    const startInput = parseInt(document.getElementById('startNumber').value, 10);
+    if (isNaN(startInput) || startInput < 1 || startInput > 99) {
+        alert(t('badStart'));
+        return;
+    }
+    this.startDay = startInput;
+    this.currentDay = startInput;
+
+    const penaltyRadio = document.querySelector('input[name="penaltyCards"]:checked');
+    this.penaltyCards = penaltyRadio ? parseInt(penaltyRadio.value, 10) : 1;
+
+    this.beginPlay();
+}
+
+startRandomGame() {
+    const allOps = ['+', '-', '×', '÷'];
+    const shuffled = allOps.sort(() => Math.random() - 0.5);
+    const opCount = Math.floor(Math.random() * 3) + 2; // 2~4개
+    this.operators = shuffled.slice(0, opCount);
+
+    const hasDivision = this.operators.includes('÷');
+    // 나눗셈이 포함되면 괄호는 사용하지 않음
+    this.hasParentheses = hasDivision ? false : Math.random() < 0.5;
+
+    this.startDay = Math.floor(Math.random() * 20) + 1;
+    this.currentDay = this.startDay;
+    this.penaltyCards = Math.floor(Math.random() * 3) + 1;
+
+    this.beginPlay();
+}
+beginPlay() {
+    this.cards = [this.randomCard(), this.randomCard(), this.randomCard(), this.randomCard()];
+    this.expressionTokens = [];
+    this.turnsPlayed = 0;
+
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('gameScreen').style.display = 'block';
+
+    this.init();
+}
+
+        backToStart() {
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
+        }
+
+        init() {
+            this.updateDisplay();
+            this.bindGameEvents();
+        }
+
+        bindGameEvents() {
+            document.getElementById('submitBtn').onclick = () => this.submit();
+            document.getElementById('skipBtn').onclick = () => this.skip();
+            document.getElementById('clearBtn').onclick = () => this.clearExpression();
+        }
+
+        randomCard() { return Math.floor(Math.random() * 10) + 1; }
+
+        getMoonEmoji(day) {
+            if (day <= 5) return '🌙';
+            if (day <= 11) return '🌛';
+            if (day <= 18) return '🌕';
+            if (day <= 24) return '🌜';
+            return '🌙';
+        }
+
+        getMoonClass(day) { return day >= 25 ? 'waning-crescent' : ''; }
+
+        updateDisplay() {
+            const moonDisplay = document.getElementById('moonDisplay');
+            moonDisplay.textContent = this.getMoonEmoji(this.turnsPlayed + 1);
+            moonDisplay.className = this.getMoonClass(this.turnsPlayed + 1);
+
+const progress = Math.min(this.turnsPlayed / (this.maxDay - 1), 1);
+document.getElementById('moonInline').style.marginLeft =
+    `calc((100% - 70px) * ${1 - progress})`;
+
+            document.getElementById('targetNumber').textContent = this.currentDay;
+            document.getElementById('targetNumberEng').textContent = this.currentDay;
+            document.getElementById('cardCount').textContent = this.cards.length;
+            document.getElementById('cardCountEng').textContent = this.cards.length;
+
+            this.updateOperators();
+            this.updateCards();
+            this.updateExpression();
+
+            if (this.cards.length >= this.maxCards) {
+                this.gameOver(false, 'tooManyCards');
+            }
+        }
+
+        updateOperators() {
+            const operatorsDiv = document.getElementById('operators');
+            operatorsDiv.innerHTML = '';
+
+            this.operators.forEach((op, index) => {
+                const opDiv = document.createElement('div');
+                opDiv.className = 'operator';
+                opDiv.textContent = op;
+                opDiv.onclick = () => this.selectOperator(index);
+                operatorsDiv.appendChild(opDiv);
+            });
+
+            if (this.hasParentheses) {
+                ['(', ')'].forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = 'operator';
+                    div.textContent = p;
+                    div.onclick = () => this.selectParenthesis(p);
+                    operatorsDiv.appendChild(div);
+                });
+            }
+        }
+
+        updateCards() {
+            const cardsDiv = document.getElementById('cards');
+            cardsDiv.innerHTML = '';
+            this.cards.forEach((card, index) => {
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'card';
+                cardDiv.textContent = card;
+                cardDiv.onclick = () => this.selectCard(index);
+                cardsDiv.appendChild(cardDiv);
+            });
+        }
+
+        selectCard(index) {
+            const isCardUsed = this.expressionTokens.some(
+                token => token.type === 'number' && token.cardIndex === index
+            );
+            if (isCardUsed) return;
+
+            this.expressionTokens.push({ type: 'number', value: this.cards[index], cardIndex: index });
+            document.querySelectorAll('.card')[index].classList.add('selected');
+            this.updateExpression();
+        }
+
+        selectOperator(index) {
+            this.expressionTokens.push({ type: 'operator', value: this.operators[index] });
+            this.updateExpression();
+        }
+
+        selectParenthesis(paren) {
+            this.expressionTokens.push({ type: 'parenthesis', value: paren });
+            this.updateExpression();
+        }
+
+        updateExpression() {
+            const expressionDiv = document.getElementById('expression');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (this.expressionTokens.length === 0) {
+                expressionDiv.textContent = '';
+                submitBtn.disabled = true;
+                return;
+            }
+
+            let expression = this.expressionTokens.map(tok => tok.value).join(' ');
+            let hasValidExpression = false;
+
+            try {
+                if (this.isValidExpression()) {
+                    const result = this.calculateExpression();
+                    if (result !== null && Number.isInteger(result)) {
+                        expression += ` = ${result}`;
+                        submitBtn.disabled = (result !== this.currentDay);
+                        hasValidExpression = true;
+                    } else {
+                        expression += ` = (${t('notInteger')})`;
+                        submitBtn.disabled = true;
+                    }
+                }
+                expressionDiv.textContent = expression || t('makeExpr');
+                if (!hasValidExpression) submitBtn.disabled = true;
+            } catch (error) {
+                expressionDiv.textContent = t('invalidExpr');
+                submitBtn.disabled = true;
+            }
+        }
+
+        isValidExpression() {
+            if (this.expressionTokens.length === 0) return false;
+            let openCount = 0;
+            for (let token of this.expressionTokens) {
+                if (token.type === 'parenthesis') {
+                    if (token.value === '(') openCount++;
+                    else openCount--;
+                    if (openCount < 0) return false;
+                }
+            }
+            if (openCount !== 0) return false;
+            const first = this.expressionTokens[0];
+            const last = this.expressionTokens[this.expressionTokens.length - 1];
+            return (first.type === 'number' || first.value === '(') &&
+                   (last.type === 'number' || last.value === ')');
+        }
+
+        calculateExpression() {
+            try {
+                let str = this.expressionTokens.map(tok => tok.value).join('');
+                str = str.replace(/×/g, '*').replace(/÷/g, '/');
+                const result = this.safeEval(str);
+                return (result !== null && !Number.isInteger(result)) ? null : result;
+            } catch { return null; }
+        }
+
+        safeEval(expression) {
+            try {
+                if (!/^[0-9+\-*/().\s]+$/.test(expression)) return null;
+                const result = new Function('return (' + expression + ')')();
+                return isFinite(result) ? result : null;
+            } catch { return null; }
+        }
+
+        submit() {
+            if (this.expressionTokens.length === 0) return;
+            const usedIndices = this.expressionTokens
+                .filter(tok => tok.type === 'number')
+                .map(tok => tok.cardIndex)
+                .sort((a, b) => b - a);
+            usedIndices.forEach(i => this.cards.splice(i, 1));
+            this.nextDay();
+        }
+
+        skip() {
+            for (let i = 0; i < this.penaltyCards; i++) this.cards.push(this.randomCard());
+            this.nextDay();
+        }
+
+       nextDay() {
+    this.turnsPlayed++;
+    this.currentDay++;
+
+    // 카드를 다 털었으면 성공 (30턴째여도 성공)
+    if (this.cards.length <= 1) {
+        this.gameOver(true, null);
+        return;
+    }
+    // 30턴이 끝났는데 카드가 남아 있으면 실패
+    if (this.turnsPlayed >= this.maxDay) {
+        this.gameOver(false, 'over30');
+        return;
+    }
+
+    this.expressionTokens = [];
+    this.resetCardStates();
+    this.updateDisplay();
+}
+        resetCardStates() {
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
+        }
+
+        clearExpression() {
+            this.expressionTokens = [];
+            this.resetCardStates();
+            this.updateExpression();
+        }
+
+
+
+gameOver(success, msgKey) {
+    document.getElementById('gameOverTitle').textContent =
+        success ? t('successTitle') : t('failTitle');
+    document.getElementById('gameOverMessage').textContent =
+        msgKey ? t(msgKey) : '';
+    document.getElementById('gameOver').style.display = 'flex';
+    
+    if (success) this.triggerConfetti();
+}
+
+triggerConfetti() {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        pointer-events: none;
+    `;
+    document.body.appendChild(canvas);
+    
+    const myConfetti = confetti.create(canvas, { resize: true });
+    
+    // 왼쪽
+    myConfetti({ particleCount: 80, angle: 60, spread: 70, origin: { x: 0, y: 0.7 } });
+    // 오른쪽
+    myConfetti({ particleCount: 80, angle: 120, spread: 70, origin: { x: 1, y: 0.7 } });
+    
+    setTimeout(() => canvas.remove(), 4000);
+}
+
+}
+
+
+    window.addEventListener('DOMContentLoaded', () => { new NumtterGame(); });
 </script>
 </body>
 </html>
